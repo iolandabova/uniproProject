@@ -103,6 +103,37 @@ public class StudenteDaoImpl implements StudenteDAO {
 		}
 		return s;
 	}
+	
+	@Override
+	public Studente getByMatricola(String matricola, String password) {
+		
+		Studente s = null;
+		String query="select * from studente where matricola=? and password=?";
+		try {
+			
+			PreparedStatement ps=dbConn.getConn().prepareStatement(query);
+			ps.setString(1, matricola);
+			ps.setString(2, password);
+			ResultSet rs=ps.executeQuery();
+			if(rs.next()) {
+				s=new Studente();
+				s.setMatricola(matricola);
+				s.setPassword(password);
+				s.setNome(rs.getString("nome"));
+				s.setCognome(rs.getString("cognome"));
+				s.setSesso(rs.getString("sesso"));
+				s.setDataNascita(rs.getDate("datanascita"));
+				s.setIndirizzo(rs.getString("indirizzo"));
+				s.setCitta(rs.getString("citta"));
+				s.setEmail(rs.getString("email"));
+			}
+			ps.close();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return s;
+	}
 
 	@Override
 	public void update(Studente s) {
