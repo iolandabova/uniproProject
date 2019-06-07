@@ -44,7 +44,6 @@ public class StudenteDaoImpl implements StudenteDAO {
 			ps.close();
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -62,8 +61,7 @@ public class StudenteDaoImpl implements StudenteDAO {
 			ps.close();
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+				e.printStackTrace();
 		}
 
 	}
@@ -130,7 +128,6 @@ public class StudenteDaoImpl implements StudenteDAO {
 			ps.close();
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -140,13 +137,17 @@ public class StudenteDaoImpl implements StudenteDAO {
 	public List<Studente> getAll() {
 		
 		ArrayList<Studente> listaStudenti=new ArrayList<Studente>();
+		Studente s = null;
+		String query="select * from studente";
+		
 		try {
-			String query="select * from utente";
+			
 			PreparedStatement ps=dbConn.getConn().prepareStatement(query);
 			ResultSet rs=ps.executeQuery();
 			
 			while(rs.next()) {
-				Studente s=new Studente();
+				
+				s=new Studente();
 				s.setMatricola(rs.getString("matricola"));
 				s.setNome(rs.getString("nome"));
 				s.setCognome(rs.getString("cognome"));
