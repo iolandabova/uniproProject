@@ -23,13 +23,15 @@ public class DocenteDaoImpl implements DocenteDAO {
 	@Override
 	public void save(Docente d) {
 		
+		String query ="insert into docente (iddocente, nome, cognome, sesso)" + "values(?,?,?,?)";
+		
 		try {
-			String query ="insert into docente (iddocente,nome,cognome,sesso)" + "values(?,?,?,?)";
+			
 			PreparedStatement ps= dbConn.getConn().prepareStatement(query);
-				ps.setString(1, d.getIdDocente());
-				ps.setString(2, d.getNome());
-				ps.setString(3, d.getCognome());
-				ps.setString(4, d.getSesso());
+			ps.setString(1, d.getIdDocente());
+			ps.setString(2, d.getNome());
+			ps.setString(3, d.getCognome());
+			ps.setString(4, d.getSesso());
 			ps.executeUpdate();
 			ps.close();
 		} catch (SQLException e) {
@@ -42,8 +44,10 @@ public class DocenteDaoImpl implements DocenteDAO {
 	@Override
 	public void deleteByIdDocente(String idDocente) {
 		
+		String query = "delete from docente where iddocente =?";
+		
 		try {
-			String query = "delete from docente where iddocente =?";
+			
 			PreparedStatement ps = dbConn.getConn().prepareStatement(query);
 			ps.setString(1, idDocente);
 			ps.executeUpdate();
@@ -85,6 +89,7 @@ public class DocenteDaoImpl implements DocenteDAO {
 	public void update(Docente d) {
 		
 		String query = "update docente set nome = ?, cognome = ?, sesso = ? where iddocente = ?";
+		
 		try {
 			PreparedStatement ps=dbConn.getConn().prepareStatement(query);
 			ps.setString(1, d.getNome());
@@ -94,7 +99,7 @@ public class DocenteDaoImpl implements DocenteDAO {
 			ps.executeUpdate();
 			ps.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}		
 	}
@@ -102,10 +107,12 @@ public class DocenteDaoImpl implements DocenteDAO {
 	@Override
 	public List<Docente> getAll() {
 		
-		Docente d;
+		Docente d = null;
 		ArrayList<Docente> listaDocenti = new ArrayList <Docente>();
+		String query ="select * from docente";
+		
 		try {
-			String query ="select * from docente";
+			
 			PreparedStatement ps= dbConn.getConn().prepareStatement(query);
 			ResultSet rs = ps.executeQuery();
 			
@@ -115,8 +122,10 @@ public class DocenteDaoImpl implements DocenteDAO {
 				d.setNome(rs.getString("nome"));
 				d.setCognome(rs.getString("cognome"));
 				d.setSesso(rs.getString("sesso"));
+				
 				listaDocenti.add(d);
 			}
+			ps.close();
 			
 	     }catch (Exception e) {
 	    	 e.printStackTrace();
