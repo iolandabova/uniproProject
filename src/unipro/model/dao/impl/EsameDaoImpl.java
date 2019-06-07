@@ -4,12 +4,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import unipro.connection.DbConnection;
 import unipro.model.Esame;
-import unipro.model.Studente;
 import unipro.model.dao.EsameDAO;
 
 public class EsameDaoImpl implements EsameDAO{
