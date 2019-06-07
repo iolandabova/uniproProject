@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import login.model.Utente;
 import unipro.connection.DbConnection;
 import unipro.model.Studente;
 import unipro.model.dao.StudenteDAO;
