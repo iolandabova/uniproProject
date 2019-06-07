@@ -38,7 +38,7 @@ public class DocenteDaoImpl implements DocenteDAO {
 			e.printStackTrace();
 		}
 	
-}
+	}
 		
 
 	@Override
@@ -127,11 +127,10 @@ public class DocenteDaoImpl implements DocenteDAO {
 			}
 			ps.close();
 			
-	     }catch (Exception e) {
+		}catch (Exception e) {
 	    	 e.printStackTrace();
-	     }
+		}
 		return listaDocenti;
 	}
 	
-
 }
