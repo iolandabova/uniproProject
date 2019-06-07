@@ -55,7 +55,6 @@ public class EsameDaoImpl implements EsameDAO{
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
 	}
 
 	@Override

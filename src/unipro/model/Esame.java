@@ -7,7 +7,7 @@ public class Esame {
 	private int cfu;
 	
 	public Esame() {
-		
+		super();
 	}
 
 	public String getIdEsame() {

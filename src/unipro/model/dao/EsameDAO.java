@@ -11,5 +11,4 @@ public interface EsameDAO {
 	public Esame getByIdEsame(String idEsame);	
 	public void update(Esame es);									
 	public List<Esame> getAll();
-
 }
