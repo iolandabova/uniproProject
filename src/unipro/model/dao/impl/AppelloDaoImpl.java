@@ -120,6 +120,45 @@ public class AppelloDaoImpl implements AppelloDAO {
 	}
 
 	@Override
+	public List<Appello> getAllByIdEsame(String idEsame) {
+		
+		//AGGIUNGERE JOIN SU ESAME E OGGETTO ESAME 
+		Appello a = null;
+		ArrayList<Appello> listaAppelli = new ArrayList <Appello>();
+		String query ="select * from appello as ap join docente as do on ap.idDocente=do.idDocente where idEsame=?";
+		
+		try {
+			
+			PreparedStatement ps= dbConn.getConn().prepareStatement(query);
+			ps.setString(1, idEsame);
+			ResultSet rs = ps.executeQuery();
+			
+			while (rs.next()) {
+				a = new Appello();
+				a.setIdAppello(rs.getString("idappello"));
+				a.setData(rs.getDate("data"));
+				a.setAula(rs.getString("aula"));
+				a.setIdEsame(rs.getString("idesame"));
+				a.setIdDocente(rs.getString("iddocente"));
+				
+				Docente doc = new Docente();
+				doc.setIdDocente(rs.getString("iddocente"));
+				doc.setCognome(rs.getString("cognome"));
+				doc.setNome(rs.getString("nome"));
+				doc.setSesso(rs.getString("sesso"));
+				a.setDoc(doc);
+				
+				listaAppelli.add(a);
+			}
+			ps.close();
+			
+		}catch (Exception e) {
+	    	 e.printStackTrace();
+		}
+		return listaAppelli;
+	}		
+		
+	@Override
 	public List<Appello> getAll() {
 		
 		Appello a = null;

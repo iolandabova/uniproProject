@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import unipro.model.ErrorCodes;
 import unipro.model.Studente;
 import unipro.model.dao.StudenteDAO;
 import unipro.model.dao.impl.StudenteDaoImpl;
@@ -48,7 +49,6 @@ public class LogInServlet extends HttpServlet {
 		String matricola = request.getParameter("matricola");
 		String password = request.getParameter("pass");
 		Studente s = studenteDao.getByMatricola(matricola, password);
-		int error = 0;
 		
 		if(s != null) {
 			
@@ -62,8 +62,7 @@ public class LogInServlet extends HttpServlet {
 			
 		} else {
 			
-			error = 1; 
-			request.setAttribute("errore", error);
+			request.setAttribute("codiceErrore", ErrorCodes.WRONGLOGIN);
 			RequestDispatcher d = request.getRequestDispatcher("./view/gestoreErrori.jsp");
 			d.forward(request, response);
 		}

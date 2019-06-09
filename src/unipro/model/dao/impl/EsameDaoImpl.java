@@ -104,9 +104,9 @@ public class EsameDaoImpl implements EsameDAO{
 	@Override
 	public List<Esame> getAll() {
 	
-		ArrayList<Esame> listaEsami=new ArrayList<Esame>();
+		ArrayList<Esame> listaEsami = new ArrayList<Esame>();
 		Esame es = null;
-		String query="select * from esame";
+		String query = "select * from esame";
 		try {
 			PreparedStatement ps=dbConn.getConn().prepareStatement(query);
 			ResultSet rs=ps.executeQuery();
@@ -118,7 +118,7 @@ public class EsameDaoImpl implements EsameDAO{
 				es.setCfu(rs.getInt("cfu"));
 			
 				listaEsami.add(es);
-		}
+			}
 			ps.close();
 			
 		} catch (Exception e) {

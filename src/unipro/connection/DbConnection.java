@@ -31,7 +31,7 @@ public class DbConnection {
 		//String connString="jdbc:oracle:"+driver+":"+user+"/"+pass+"@//"+host+":"+port+"/"+db;
 		
 		try {
-			this.conn=DriverManager.getConnection(connString);
+			this.conn = DriverManager.getConnection(connString);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}	
