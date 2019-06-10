@@ -2,29 +2,24 @@
     pageEncoding="ISO-8859-1"%>
 <%@ page import = "java.util.ArrayList" %>
 <%@ page import = "unipro.model.Esame" %>
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
-		<meta charset="ISO-8859-1">
-		<title>Esami disponibili</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<title>Piano di Studi</title>
 	</head>
 	<body>
 		<% 
 			ArrayList<Esame> listaEsami = (ArrayList<Esame>) request.getAttribute("listaEsami");
 		%>
-	
-		<form method="post" action="./RestituisciAppelliServlet">
-			<select name="esameScelto">
-			<option value="-">--scegli un esame--</option>
+			<ul>
 			<%
 				for(Esame es : listaEsami) {
 			%>
-					<option value=<%=es.getIdEsame()%>><%=es.getNomeEsame()+" ( " + es.getCfu() + " CFU)" %>  </option>	
+					<li><%=es.getNomeEsame()+" ( " + es.getCfu() + " CFU)" %></li>	
 			<% 
 				}
 			%>
-			</select>
-			<input type="submit" name="invia" value="Ok"/>
-		</form>
+			</ul>
 	</body>
 </html>

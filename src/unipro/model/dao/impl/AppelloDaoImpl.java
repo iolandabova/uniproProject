@@ -11,6 +11,7 @@ import unipro.connection.DbConnection;
 import unipro.model.Appello;
 import unipro.model.Docente;
 import unipro.model.dao.AppelloDAO;
+import unipro.model.dto.AppelloDTO;
 
 public class AppelloDaoImpl implements AppelloDAO {
 	
@@ -120,12 +121,11 @@ public class AppelloDaoImpl implements AppelloDAO {
 	}
 
 	@Override
-	public List<Appello> getAllByIdEsame(String idEsame) {
+	public List<AppelloDTO> getAllByIdEsame(String idEsame) {
 		
-		//AGGIUNGERE JOIN SU ESAME E OGGETTO ESAME 
-		Appello a = null;
-		ArrayList<Appello> listaAppelli = new ArrayList <Appello>();
-		String query ="select * from appello as ap join docente as do on ap.idDocente=do.idDocente where idEsame=?";
+		AppelloDTO a = null;
+		ArrayList<AppelloDTO> listaAppelli = new ArrayList <AppelloDTO>();
+		String query ="select * from esame es join appello ap on es.idesame=ap.idesame join docente do on do.iddocente=ap.iddocente where es.idEsame=?";
 		
 		try {
 			
@@ -134,20 +134,14 @@ public class AppelloDaoImpl implements AppelloDAO {
 			ResultSet rs = ps.executeQuery();
 			
 			while (rs.next()) {
-				a = new Appello();
+				a = new AppelloDTO();
 				a.setIdAppello(rs.getString("idappello"));
+				a.setNomeEsame(rs.getString("nomeEsame"));
 				a.setData(rs.getDate("data"));
 				a.setAula(rs.getString("aula"));
-				a.setIdEsame(rs.getString("idesame"));
-				a.setIdDocente(rs.getString("iddocente"));
-				
-				Docente doc = new Docente();
-				doc.setIdDocente(rs.getString("iddocente"));
-				doc.setCognome(rs.getString("cognome"));
-				doc.setNome(rs.getString("nome"));
-				doc.setSesso(rs.getString("sesso"));
-				a.setDoc(doc);
-				
+				a.setNomeDocente(rs.getString("nome"));
+				a.setCognomeDocente(rs.getString("cognome"));
+					
 				listaAppelli.add(a);
 			}
 			ps.close();

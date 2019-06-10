@@ -1,10 +1,6 @@
 package unipro.controller;
 
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -15,25 +11,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import unipro.model.Appello;
-import unipro.model.Docente;
-import unipro.model.dao.AppelloDAO;
-import unipro.model.dao.impl.AppelloDaoImpl;
-import unipro.model.dto.AppelloDTO;
+import unipro.model.Esame;
+import unipro.model.dao.EsameDAO;
+import unipro.model.dao.impl.EsameDaoImpl;
 
 /**
- * Servlet implementation class RestituisciAppelliServlet
+ * Servlet implementation class RestituisciPianoDiStudi
  */
-@WebServlet("/RestituisciAppelliServlet")
-public class RestituisciAppelliServlet extends HttpServlet {
+@WebServlet("/RestituisciPianoDiStudi")
+public class RestituisciPianoDiStudi extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	private static AppelloDAO appelloDao;
+	private static EsameDAO esameDao;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RestituisciAppelliServlet() {
+    public RestituisciPianoDiStudi() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -42,8 +36,8 @@ public class RestituisciAppelliServlet extends HttpServlet {
 	 * @see Servlet#init(ServletConfig)
 	 */
 	public void init(ServletConfig config) throws ServletException {
-		
-		appelloDao = new AppelloDaoImpl();
+
+		esameDao = new EsameDaoImpl();
 	}
 
 	/**
@@ -51,19 +45,11 @@ public class RestituisciAppelliServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String idEsameScelto = request.getParameter("esameScelto");
+		List<Esame> listaEsami = esameDao.getAll();
 		
-		if(idEsameScelto == null) {
-			
-			idEsameScelto = (String) request.getSession().getAttribute("idEsameSessione");
-		} else {
-			
-			request.getSession().setAttribute("idEsameSessione", idEsameScelto);
-		}
-		List<AppelloDTO> listaAppelli = appelloDao.getAllByIdEsame(idEsameScelto);
-
-		request.setAttribute("listaAppelli", listaAppelli);
-		RequestDispatcher rd=request.getRequestDispatcher("./view/visualizzaAppelli.jsp");
+		request.setAttribute("listaEsami", listaEsami);
+		
+		RequestDispatcher rd=request.getRequestDispatcher("./view/visualizzaPianoDiStudi.jsp");
 		rd.forward(request, response);
 	}
 

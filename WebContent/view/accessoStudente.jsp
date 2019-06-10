@@ -14,6 +14,13 @@
 		   Object cognomeGrezzo = request.getAttribute("cognomeStudente");
 		   String cognome = (String) cognomeGrezzo;%>
 		<h1 align="center" style="font-family:verdana; color:green;">Benvenuto nel sito <%= nome+" "+cognome+" "+ matricola %>!</h1>
+		
+		<ul>
+			<li><a href="./RestituisciEsamiServlet"> Anagrafica Studente</a></li>
+			<li><a href="./RestituisciPianoDiStudi"> Piano di Studi</a></li>
+			<li><a href="./RestituisciEsamiServlet"> Prenotazione esame</a></li>
+			<li><a href="./RestituisciAppelliPrenotatiServlet"> Esami prenotati</a></li>
+		</ul>
 
 	</body>
 </html>

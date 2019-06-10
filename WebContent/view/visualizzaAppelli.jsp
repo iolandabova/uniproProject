@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-    
-<%@ page import = "java.util.ArrayList" %>    
+    pageEncoding="ISO-8859-1"%>   
+<%@ page import = "java.util.ArrayList" %> 
+<%@ page import = "unipro.model.dto.AppelloDTO" %>    
 <!DOCTYPE html>
 <html>
 	<head>
@@ -10,45 +10,35 @@
 	</head>
 	<body>
 		<% 
-			ArrayList<String> idAppelli = (ArrayList<String>)request.getAttribute("idAppelli");
-			ArrayList<String> idEsami = (ArrayList<String>)request.getAttribute("idEsami");
-			ArrayList<String> date = (ArrayList<String>)request.getAttribute("date");
-			ArrayList<String> aule = (ArrayList<String>)request.getAttribute("aule");
-			ArrayList<String> datiDocente = (ArrayList<String>)request.getAttribute("datiDocente");	
+			ArrayList<AppelloDTO> listaAppelli = (ArrayList<AppelloDTO>)request.getAttribute("listaAppelli");
+			Boolean esitoPrenotazione = (Boolean)request.getAttribute("esitoPrenotazione");
 		%>
 		
-		<table border="5">
-		<%
-		for(int i=0; i < idEsami.size(); i++) {
-		%>	
-			<tr>
-				<td>
-					<input type="radio" name="appelloScelto" value=<%=idAppelli.get(i) %>  >
-				</td>
-				<td>
-					<%=idEsami.get(i) %>
-				</td>
+		<form method="post" action="./PrenotaAppelloServlet">
+			<table border="2">
+			<%
+			for(AppelloDTO ap : listaAppelli) {
+			%>	
+				<tr>
+					<td>
+						<input type="radio" name="appelloScelto" value=<%=ap.getIdAppello() %>  >
+					</td>
+					<td>
+						<%=ap.getNomeEsame()+" "+ap.getData()+" "+ap.getAula()+" "+ap.getCognomeDocente()+" "+ap.getNomeDocente()%>
+					</td>			
+				</tr>
+			<% 
+			}
+			%>
+			</table>
+			<input type="submit" name="invia" value="Prenota"/>
+			<% if(esitoPrenotazione != null && esitoPrenotazione.booleanValue() == true) { %>
 				
-				<td>
-					<%=date.get(i) %>
-				</td>
-				
-				<td>
-					<%=aule.get(i) %>
-				</td>
-				
-				<td>
-					<%=datiDocente.get(i) %>
-				</td>						
-			</tr>
-		
-		<% 
-		}
-		
-		
-		%>
-		
-		</table>
-
+					<div>PRENOTAZIONE EFFETTUATA</div>
+			<% } else if(esitoPrenotazione != null){ %>
+					
+					<div>PRENOTAZIONE non EFFETTUATA</div>
+			<% } %>
+		</form>
 	</body>
 </html>

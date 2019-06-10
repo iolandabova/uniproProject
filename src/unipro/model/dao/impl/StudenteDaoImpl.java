@@ -10,6 +10,7 @@ import java.util.List;
 import unipro.connection.DbConnection;
 import unipro.model.Studente;
 import unipro.model.dao.StudenteDAO;
+import unipro.model.dto.AppelloDTO;
 
 public class StudenteDaoImpl implements StudenteDAO {
 	
@@ -105,7 +106,7 @@ public class StudenteDaoImpl implements StudenteDAO {
 	}
 	
 	@Override
-	public Studente getByMatricola(String matricola, String password) {
+	public Studente getByMatricolaPassword(String matricola, String password) {
 		
 		Studente s = null;
 		String query="select * from studente where matricola=? and password=?";
@@ -197,6 +198,62 @@ public class StudenteDaoImpl implements StudenteDAO {
 			e.printStackTrace();
 		}
 		return listaStudenti;
+	}
+
+	@Override
+	public boolean prenotaAppello(String matricola, String idAppello) {
+		
+		String query ="insert into prenota (matricola, idappello)" + "values(?,?)";
+		boolean ex=false;
+		
+		try {
+			
+			PreparedStatement ps= dbConn.getConn().prepareStatement(query);
+			ps.setString(1, matricola);
+			ps.setString(2, idAppello);
+			
+			if (ps.executeUpdate() > 0)
+				ex = true;
+			
+			ps.close();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return ex;
+	}
+
+	@Override
+	public List<AppelloDTO> getAppelliPrenotati(String matricola) {
+		
+		AppelloDTO a = null;
+		ArrayList<AppelloDTO> listaAppelliPrenotati = new ArrayList <AppelloDTO>();
+		String query ="select ap.idappello, es.nomeesame, ap.data, ap.aula, do.nome, do.cognome from appello ap join prenota pr on ap.idappello=pr.idappello join studente st on st.matricola=pr.matricola join esame es on es.idesame=ap.idesame join docente do on do.iddocente=ap.iddocente where st.matricola=?";
+		
+		try {
+			
+			PreparedStatement ps= dbConn.getConn().prepareStatement(query);
+			ps.setString(1, matricola);
+			ResultSet rs = ps.executeQuery();
+			
+			while (rs.next()) {
+				a = new AppelloDTO();
+				a.setIdAppello(rs.getString("idappello"));
+				a.setNomeEsame(rs.getString("nomeesame"));
+				a.setData(rs.getDate("data"));
+				a.setAula(rs.getString("aula"));
+				a.setNomeDocente(rs.getString("nome"));
+				a.setCognomeDocente(rs.getString("cognome"));
+					
+				listaAppelliPrenotati.add(a);
+			}
+			ps.close();
+			
+		}catch (Exception e) {
+	    	 e.printStackTrace();
+		}
+		return listaAppelliPrenotati;
+		
 	}
 	
 }

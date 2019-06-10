@@ -10,9 +10,6 @@ public class Appello {
 	private String idEsame;
 	private String idDocente;
 	
-	private Docente doc;
-	private Esame esa;
-	
 	public Appello() {
 		super();
 	}
@@ -56,23 +53,5 @@ public class Appello {
 	public void setIdDocente(String idDocente) {
 		this.idDocente = idDocente;
 	}
-
-	public Docente getDoc() {
-		return doc;
-	}
-
-	public void setDoc(Docente doc) {
-		this.doc = doc;
-	}
-
-	public Esame getEsa() {
-		return esa;
-	}
-
-	public void setEsa(Esame esa) {
-		this.esa = esa;
-	}
-	
-	
 
 }
