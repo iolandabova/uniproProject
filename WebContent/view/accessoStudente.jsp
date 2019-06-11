@@ -7,17 +7,16 @@
 		<title>Area Riservata</title>
 	</head>
 	<body>
-		<% Object matricolaGrezza = session.getAttribute("utenteRegistrato");
-		   String matricola = (String) matricolaGrezza;
-		   Object nomeGrezzo = request.getAttribute("nomeStudente");
-		   String nome = (String) nomeGrezzo;
-		   Object cognomeGrezzo = request.getAttribute("cognomeStudente");
-		   String cognome = (String) cognomeGrezzo;%>
+		<% 
+		   String matricola = (String) session.getAttribute("utenteRegistrato");
+		   String nome = (String) request.getAttribute("nomeStudente");
+		   String cognome = (String) request.getAttribute("cognomeStudente"); %>
+		   
 		<h1 align="center" style="font-family:verdana; color:green;">Benvenuto nel sito <%= nome+" "+cognome+" "+ matricola %>!</h1>
 		
 		<ul>
-			<li><a href="./RestituisciEsamiServlet"> Anagrafica Studente</a></li>
-			<li><a href="./RestituisciPianoDiStudi"> Piano di Studi</a></li>
+			<li><a href="./RestituisciAnagraficaStudenteServlet"> Anagrafica Studente</a></li>
+			<li><a href="./RestituisciPianoDiStudiServlet"> Piano di Studi</a></li>
 			<li><a href="./RestituisciEsamiServlet"> Prenotazione esame</a></li>
 			<li><a href="./RestituisciAppelliPrenotatiServlet"> Esami prenotati</a></li>
 		</ul>

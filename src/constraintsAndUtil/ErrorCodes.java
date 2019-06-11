@@ -1,4 +1,4 @@
-package unipro.model;
+package constraintsAndUtil;
 
 public class ErrorCodes {
 	

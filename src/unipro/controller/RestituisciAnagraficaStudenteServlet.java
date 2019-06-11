@@ -1,7 +1,6 @@
 package unipro.controller;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -10,24 +9,25 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import unipro.model.Esame;
-import unipro.model.dao.EsameDAO;
-import unipro.model.dao.impl.EsameDaoImpl;
+import unipro.model.Studente;
+import unipro.model.dao.StudenteDAO;
+import unipro.model.dao.impl.StudenteDaoImpl;
 
 /**
- * Servlet implementation class RestituisciPianoDiStudi
+ * Servlet implementation class RestituisciAnagraficaStudenteServlet
  */
-@WebServlet("/RestituisciPianoDiStudi")
-public class RestituisciPianoDiStudi extends HttpServlet {
+@WebServlet("/RestituisciAnagraficaStudenteServlet")
+public class RestituisciAnagraficaStudenteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	private static EsameDAO esameDao;
+	private static StudenteDAO studenteDao;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RestituisciPianoDiStudi() {
+    public RestituisciAnagraficaStudenteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,8 +36,8 @@ public class RestituisciPianoDiStudi extends HttpServlet {
 	 * @see Servlet#init(ServletConfig)
 	 */
 	public void init(ServletConfig config) throws ServletException {
-
-		esameDao = new EsameDaoImpl();
+		
+		studenteDao = new StudenteDaoImpl();
 	}
 
 	/**
@@ -45,11 +45,12 @@ public class RestituisciPianoDiStudi extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		List<Esame> listaEsami = esameDao.getAll();
+		HttpSession session = request.getSession(true);
+		String matricola = (String) session.getAttribute("utenteRegistrato");
+		Studente s = studenteDao.getByMatricola(matricola);
 		
-		request.setAttribute("listaEsami", listaEsami);
-		
-		RequestDispatcher rd=request.getRequestDispatcher("./view/visualizzaPianoDiStudi.jsp");
+		request.setAttribute("datiStudente", s);
+		RequestDispatcher rd=request.getRequestDispatcher("./view/visualizzaAnagraficaStudente.jsp");
 		rd.forward(request, response);
 	}
 
