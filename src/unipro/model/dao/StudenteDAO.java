@@ -14,6 +14,7 @@ public interface StudenteDAO {
 	public void update(Studente s);									
 	public List<Studente> getAll();
 	public boolean prenotaAppello(String matricola, String idAppello);
+	public boolean cancellaPrenotazioneAppello(String matricola, String idAppello);
 	public List<AppelloDTO> getAppelliPrenotati(String matricola);
 }
 

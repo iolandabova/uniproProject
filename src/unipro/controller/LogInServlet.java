@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import constraintsAndUtil.ErrorCodes;
+import constraintsAndUtil.Utils;
 import unipro.model.Studente;
 import unipro.model.dao.StudenteDAO;
 import unipro.model.dao.impl.StudenteDaoImpl;
@@ -46,6 +47,7 @@ public class LogInServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+
 		String matricola = request.getParameter("matricola");
 		String password = request.getParameter("pass");
 		Studente s = studenteDao.getByMatricolaPassword(matricola, password);
@@ -54,8 +56,8 @@ public class LogInServlet extends HttpServlet {
 			
 			HttpSession session = request.getSession(true);
 			session.setAttribute("utenteRegistrato", s.getMatricola());
-			request.setAttribute("nomeStudente", s.getNome());
-			request.setAttribute("cognomeStudente", s.getCognome());
+			session.setAttribute("nomeStudente", s.getNome());
+			session.setAttribute("cognomeStudente", s.getCognome());
 			RequestDispatcher rd=request.getRequestDispatcher("./view/accessoStudente.jsp");
 			rd.forward(request, response);
 			

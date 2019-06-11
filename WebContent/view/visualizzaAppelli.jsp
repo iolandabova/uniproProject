@@ -9,6 +9,11 @@
 		<title>Appelli disponibili</title>
 	</head>
 	<body>
+		<form method="post" action="./view/accessoStudente.jsp">
+		 	<div style="text-align:right;">
+				<input type="submit" name="invia" value="Torna al menu principale"/>
+			</div>
+		</form>
 		<% 
 			ArrayList<AppelloDTO> listaAppelli = (ArrayList<AppelloDTO>)request.getAttribute("listaAppelli");
 			Boolean esitoPrenotazione = (Boolean)request.getAttribute("esitoPrenotazione");
@@ -35,9 +40,11 @@
 			<% if(esitoPrenotazione != null && esitoPrenotazione.booleanValue() == true) { %>
 				
 					<div>PRENOTAZIONE EFFETTUATA</div>
+					
 			<% } else if(esitoPrenotazione != null){ %>
 					
 					<div>PRENOTAZIONE non EFFETTUATA</div>
+					
 			<% } %>
 		</form>
 	</body>

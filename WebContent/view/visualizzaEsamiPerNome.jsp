@@ -6,7 +6,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-		<title>Piano di Studi</title>
+		<title>Lista Esami</title>
 	</head>
 	<body>
 		<form method="post" action="./view/accessoStudente.jsp">
@@ -14,17 +14,32 @@
 				<input type="submit" name="invia" value="Torna al menu principale"/>
 			</div>
 		</form>
+		
 		<% 
-			ArrayList<Esame> listaEsami = (ArrayList<Esame>) request.getAttribute("listaEsami");
+			ArrayList<Esame> listaEsami = (ArrayList<Esame>) request.getAttribute("listaEsamiPerNome");
 		%>
-			<ul>
+	
+		<form method="post" action="./RestituisciAppelliServlet">
+			
+			<table border="2">
 			<%
-				for(Esame es : listaEsami) {
-			%>
-					<li><%=es.getNomeEsame()+" ( " + es.getCfu() + " CFU)" %></li>	
+			for(Esame es : listaEsami) {
+			%>	
+				<tr>
+					<td>
+						<input type="radio" name="esameScelto" value=<%=es.getIdEsame() %>  >
+					</td>
+					<td>
+						<%=es.getNomeEsame()+" ( " + es.getCfu() + " CFU)" %>
+					</td>			
+				</tr>
 			<% 
-				}
+			}
 			%>
-			</ul>
+			</table>
+			
+			
+			<input type="submit" name="invia" value="Ok"/>
+		</form>
 	</body>
 </html>

@@ -79,6 +79,34 @@ public class EsameDaoImpl implements EsameDAO{
 		return es;
 					
 	}
+	
+	@Override
+	public List<Esame> getByNomeEsame(String nomeEsame) {
+		
+		ArrayList<Esame> listaEsamiPerNome = new ArrayList<Esame>();
+		Esame es = null;
+		String query="select * from esame where nomeesame like ?";
+		try {
+			
+			PreparedStatement ps = dbConn.getConn().prepareStatement(query);
+			ps.setString(1, "%"+nomeEsame.toUpperCase()+"%");
+			ResultSet rs=ps.executeQuery();
+			while(rs.next()) {
+				es=new Esame();
+				es.setNomeEsame(rs.getString("nomeesame"));
+				es.setIdEsame(rs.getString("idesame"));
+				es.setCfu(rs.getInt("cfu"));
+				
+				listaEsamiPerNome.add(es);
+		}
+			ps.close();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return listaEsamiPerNome;
+					
+	}
 
 	@Override
 	public void update(Esame es) {

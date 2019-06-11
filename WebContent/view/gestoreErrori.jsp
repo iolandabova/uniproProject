@@ -9,13 +9,27 @@
 	</head>
 	<body>
 		<% Object errorGrezzo = request.getAttribute("codiceErrore");
-		   int errore = (int) errorGrezzo; 
+		   int errore = (int) errorGrezzo; 	
+		   out.println(errorGrezzo);
 		   if(errore == ErrorCodes.WRONGLOGIN) { %>
 		   
 		   		<h2 align="center" style="color:red">Nome utente o password errati!</h2>
 		   		<form method="post" action="logInStudente.html">
 		   			<div style="text-align:center;">
 						<input type="submit" name="invia" value="Riprova"/>
+					</div>
+		   		</form>
+		   		
+		<% } %> 
+		
+		<% 
+		   
+		   if(errore == ErrorCodes.NOTMADELOGIN) { %>
+		   
+		   		<h2 align="center" style="color:red">Devi effettuare l'accesso!</h2>
+		   		<form method="post" action="../logInStudente.html">
+		   			<div style="text-align:center;">
+						<input type="submit" name="invia" value="Effettua il Login"/>
 					</div>
 		   		</form>
 		   		

@@ -9,6 +9,7 @@ public interface EsameDAO {
 	public void save(Esame es);									
 	public void deleteByIdEsame(String idEsame);									
 	public Esame getByIdEsame(String idEsame);	
+	public List<Esame> getByNomeEsame(String nomeEsame);	
 	public void update(Esame es);									
 	public List<Esame> getAll();
 }

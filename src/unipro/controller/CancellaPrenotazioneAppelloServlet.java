@@ -1,8 +1,6 @@
 package unipro.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -11,33 +9,34 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import unipro.model.Esame;
-import unipro.model.dao.EsameDAO;
-import unipro.model.dao.impl.EsameDaoImpl;
-
+import unipro.model.dao.StudenteDAO;
+import unipro.model.dao.impl.StudenteDaoImpl;
 
 /**
- * Servlet implementation class VisualizzaEsamiServlet
+ * Servlet implementation class CancellaPrenotazioneAppelloServlet
  */
-@WebServlet("/RestituisciEsamiServlet")
-public class RestituisciEsamiServlet extends HttpServlet {
+@WebServlet("/CancellaPrenotazioneAppelloServlet")
+public class CancellaPrenotazioneAppelloServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	private static EsameDAO esameDao;
+	private static StudenteDAO studenteDao;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-	
-    public RestituisciEsamiServlet() {
+    public CancellaPrenotazioneAppelloServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
-    
-    public void init(ServletConfig config) throws ServletException {
+
+	/**
+	 * @see Servlet#init(ServletConfig)
+	 */
+	public void init(ServletConfig config) throws ServletException {
 		
-		esameDao = new EsameDaoImpl();
+		studenteDao = new StudenteDaoImpl();
 	}
 
 	/**
@@ -45,11 +44,14 @@ public class RestituisciEsamiServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		List<Esame> listaEsami = esameDao.getAll();
+		String idAppello = request.getParameter("idAppello");
+		HttpSession session = request.getSession(true);
+		String matricola = (String) session.getAttribute("utenteRegistrato");
+		Boolean ok = studenteDao.cancellaPrenotazioneAppello(matricola, idAppello);
 		
-		request.setAttribute("listaEsami", listaEsami);
+		request.setAttribute("esitoCancellazione", ok);
+		RequestDispatcher rd=request.getRequestDispatcher("./RestituisciAppelliPrenotatiServlet");
 		
-		RequestDispatcher rd=request.getRequestDispatcher("./view/visualizzaEsami.jsp");
 		rd.forward(request, response);
 	}
 

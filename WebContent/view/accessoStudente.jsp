@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ page import="constraintsAndUtil.ErrorCodes" %>
+<%@ page import="constraintsAndUtil.Utils" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
@@ -8,17 +10,19 @@
 	</head>
 	<body>
 		<% 
-		   String matricola = (String) session.getAttribute("utenteRegistrato");
-		   String nome = (String) request.getAttribute("nomeStudente");
-		   String cognome = (String) request.getAttribute("cognomeStudente"); %>
+			Utils.checkedLogged(request,response);	
+		
+		    String matricola = (String) session.getAttribute("utenteRegistrato");
+		    String nome = (String) session.getAttribute("nomeStudente");
+		    String cognome = (String) session.getAttribute("cognomeStudente"); %>
 		   
 		<h1 align="center" style="font-family:verdana; color:green;">Benvenuto nel sito <%= nome+" "+cognome+" "+ matricola %>!</h1>
 		
 		<ul>
-			<li><a href="./RestituisciAnagraficaStudenteServlet"> Anagrafica Studente</a></li>
-			<li><a href="./RestituisciPianoDiStudiServlet"> Piano di Studi</a></li>
-			<li><a href="./RestituisciEsamiServlet"> Prenotazione esame</a></li>
-			<li><a href="./RestituisciAppelliPrenotatiServlet"> Esami prenotati</a></li>
+			<li><a href="http://localhost:8080/UniPro//RestituisciAnagraficaStudenteServlet"> Anagrafica Studente</a></li>
+			<li><a href="http://localhost:8080/UniPro//RestituisciPianoDiStudiServlet"> Piano di Studi</a></li>
+			<li><a href="http://localhost:8080/UniPro//RestituisciEsamiServlet"> Prenota esame</a></li>
+			<li><a href="http://localhost:8080/UniPro//RestituisciAppelliPrenotatiServlet"> Esami prenotati</a></li>
 		</ul>
 
 	</body>

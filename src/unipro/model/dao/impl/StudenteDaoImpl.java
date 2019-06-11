@@ -222,6 +222,29 @@ public class StudenteDaoImpl implements StudenteDAO {
 		}
 		return ex;
 	}
+	
+	@Override
+	public boolean cancellaPrenotazioneAppello(String matricola, String idAppello) {
+		
+		String query ="delete from prenota where matricola=? and idappello=?";
+		boolean ex=false;
+		
+		try {
+			
+			PreparedStatement ps= dbConn.getConn().prepareStatement(query);
+			ps.setString(1, matricola);
+			ps.setString(2, idAppello);
+			
+			if (ps.executeUpdate() > 0)
+				ex = true;
+			
+			ps.close();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return ex;
+	}
 
 	@Override
 	public List<AppelloDTO> getAppelliPrenotati(String matricola) {

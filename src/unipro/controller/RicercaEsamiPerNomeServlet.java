@@ -1,7 +1,6 @@
 package unipro.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -16,12 +15,11 @@ import unipro.model.Esame;
 import unipro.model.dao.EsameDAO;
 import unipro.model.dao.impl.EsameDaoImpl;
 
-
 /**
- * Servlet implementation class VisualizzaEsamiServlet
+ * Servlet implementation class RicercaEsamiPerNomeServlet
  */
-@WebServlet("/RestituisciEsamiServlet")
-public class RestituisciEsamiServlet extends HttpServlet {
+@WebServlet("/RicercaEsamiPerNomeServlet")
+public class RicercaEsamiPerNomeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private static EsameDAO esameDao;
@@ -29,13 +27,15 @@ public class RestituisciEsamiServlet extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-	
-    public RestituisciEsamiServlet() {
+    public RicercaEsamiPerNomeServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
-    
-    public void init(ServletConfig config) throws ServletException {
+
+	/**
+	 * @see Servlet#init(ServletConfig)
+	 */
+	public void init(ServletConfig config) throws ServletException {
 		
 		esameDao = new EsameDaoImpl();
 	}
@@ -45,11 +45,12 @@ public class RestituisciEsamiServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		List<Esame> listaEsami = esameDao.getAll();
+		String nomeEsame = request.getParameter("ricercaEsame");
+		List<Esame> listaEsamiPerNome = esameDao.getByNomeEsame(nomeEsame);
 		
-		request.setAttribute("listaEsami", listaEsami);
+		request.setAttribute("listaEsamiPerNome", listaEsamiPerNome);
 		
-		RequestDispatcher rd=request.getRequestDispatcher("./view/visualizzaEsami.jsp");
+		RequestDispatcher rd=request.getRequestDispatcher("./view/visualizzaEsamiPerNome.jsp");
 		rd.forward(request, response);
 	}
 
