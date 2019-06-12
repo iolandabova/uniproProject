@@ -1,0 +1,20 @@
+
+	
+
+		logo {
+			text-align : left;
+			margin-top: 20%;
+  			margin-left: -4%;
+  			font-size : 80px;
+  			font-family: 'Baskerville Old Face';
+  			color: #A00000;	
+		}
+				
+		body {
+		background-image: url('../images/sfondoprogetto.jpg'); 
+		position: relative;
+		background-size : cover;
+		background-repeat : no-repeat;
+		background-size : 100% 150px;
+		background-color : #E8E0FF;
+	  }

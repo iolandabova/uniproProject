@@ -1,14 +1,113 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="ISO-8859-1">
+		<meta charset = "UTF-8">
 		<title>Portale UniPro</title>
+		<style>
+		
+		html { 
+		  background: url(http://localhost:8080/UniPro/images/sfondoprogetto.jpg) no-repeat center center fixed; 
+
+		  background-size: cover;
+		}	
+		#SPACEDDIV {
+		  margin-top: 0%;
+		  margin-left: 80%;
+		  
+		}
+		a {
+				  text-decoration: none;
+				  outline: none;
+				  display: inline-block;
+				  color: black;
+				  padding: 20px 30px;
+				  margin: 10px 20px;
+				  border-radius: 10px;
+				  font-family: 'Felix titling', sans-serif;
+				  text-transform: uppercase;
+				  letter-spacing: 2px;
+				  background-image: linear-gradient(to right, #FFE1B0 0%, #C21212 51%, #A11F12 100%);
+				  background-size: 200% auto;
+				  box-shadow: 0 0 20px rgba(0,0,0,.1);
+				  transition: .5s;
+				  width : 160px;
+				  text-align : center;
+				}
+				a:hover {background-position: right center;}
+				
+				logo {
+					text-align : left;
+					margin-top: 20%;
+		  			margin-left: -4%;
+		  			font-size : 100px;
+		  			font-family: 'Baskerville Old Face';
+		  			color: #A00000;	
+				}
+				
+				contatti {
+				
+					  margin-top: 13%;
+					  margin-left: 5%;  
+					  display: flex;
+	  				  font-size : 20px;
+	  				  font-family: 'Baskerville Old Face';
+	  				  color: black;	
+	  				  display: block;	
+				}
+				
+				sottotitolo {
+					
+					text-align : left;
+					margin-top: 3%;
+		  			margin-left: 15%;
+		  			font-size : 30px;
+		  			font-family: 'Baskerville Old Face';
+		  			color: #A00000;	
+					
+				}
+				
+				arearis{
+				
+					text-align : right;
+					margin-top: 5%;
+		  			margin-left: 46%;
+		  			font-size : 20px;
+		  			font-family: 'Lucida Calligraphy';
+		  			color: black;		
+				}
+				
+				cit {
+				
+					text-align : center;
+					margin-left : 16%;
+					margin-top: 0%;
+		  			font-size : 40px;
+		  			font-family: 'Mistral';
+		  			color: #A00000;	
+					
+				}
+						
+				
+		</style>
 	</head>
 	<body>
-		<h1>Accedi alla tua area riservata</h1> <br><br>
-		<ul>
-			<li><a href="http://localhost:8080/UniPro/view/logInStudente.jsp"> Accedi come Studente</a></li> <br><br>
-			<li><a href="http://localhost:8080/UniPro/view/logInAmministratore.jsp"> Accedi come Amministratore</a></li>
-		</ul>
+			<img src = "http://localhost:8080/UniPro/images/corona.png" width = "90px" height = "80px" hspace = "5px"/>
+			<logo> UniPro </logo> <br>
+			<sottotitolo> Pro Hominum Sapientia </sottotitolo>
+			<arearis><b>Area Riservata</b></arearis>  <br><br>	
+			<div id="SPACEDDIV">
+			
+			<a href="http://localhost:8080/UniPro/view/logInStudente.jsp"> <b> Studente </b> </a> 
+			<a href="http://localhost:8080/UniPro/view/logInAmministratore.jsp"><b> Amministratore </b></a>
+			
+			</div>
+			<cit> "Da qualche parte, qualcosa di incredibile attende di essere scoperto"  </cit>	
+			<contatti> 	
+			<u><b>Contatti:</b></u> <br>
+			<b>Sede :</b> Via della Libertà, 45 Napoli <br>
+			<b>Email : </b>contatti@unipro.it <br>
+			<b>Tel :</b> 081 - 453892
+			 </contatti>
+			
 	</body>
-</html>
+</html>		 

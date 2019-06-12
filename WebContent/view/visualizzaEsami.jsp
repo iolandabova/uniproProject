@@ -8,8 +8,11 @@
 	<head>
 		<meta charset="ISO-8859-1">
 		<title>Esami disponibili</title>
+		<link rel = "stylesheet" href = "http://localhost:8080/UniPro/css/progetto.css" type = "text/css">
 	</head>
 	<body>
+		<img src = "http://localhost:8080/UniPro/images/corona.png" width = "90px" height = "80px" hspace = "5px"/>
+		<logo> UniPro </logo> <br>	
 		<form method="post" action="http://localhost:8080/UniPro/view/logInStudente.jsp">
 		 	<div style="text-align:right;">
 				<input type="submit" name="esci" value="Logout"/>
