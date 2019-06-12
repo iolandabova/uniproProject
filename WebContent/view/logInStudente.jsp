@@ -11,14 +11,14 @@
 				session.invalidate();
 		   } %>
 		
-		<form method="post" action="index.html">
+		<form method="post" action="http://localhost:8080/UniPro/index.html">
 		 	<div style="text-align:right;">
 				<input type="submit" name="indietro" value="Indietro"/>
 			</div>
 		</form>
 		
 		<h1 align="center">Inserisci i tuoi dati</h1>
-		<form method="post" action="http://localhost:8080/UniPro//LogInServlet">
+		<form method="post" action="http://localhost:8080/UniPro/LogInServlet">
 				<div style="text-align:center;">
 					Matricola <br><br>
 					<input type="text" name="matricola"/> <br><br>

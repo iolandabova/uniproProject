@@ -8,7 +8,7 @@
 		<title>Area Riservata</title>
 	</head>
 	<body>
-		<form method="post" action="./view/logInStudente.jsp">
+		<form method="post" action="http://localhost:8080/UniPro/view/logInStudente.jsp">
 		 	<div style="text-align:right;">
 				<input type="submit" name="esci" value="Logout"/>
 			</div>
@@ -23,10 +23,10 @@
 		<h1 align="center" style="font-family:verdana; color:green;">Benvenuto nel sito <%= nome+" "+cognome+" "+ matricola %>!</h1>
 		
 		<ul>
-			<li><a href="http://localhost:8080/UniPro//RestituisciAnagraficaStudenteServlet"> Anagrafica Studente</a></li>
-			<li><a href="http://localhost:8080/UniPro//RestituisciPianoDiStudiServlet"> Piano di Studi</a></li>
-			<li><a href="http://localhost:8080/UniPro//RestituisciEsamiServlet"> Prenota esame</a></li>
-			<li><a href="http://localhost:8080/UniPro//RestituisciAppelliPrenotatiServlet"> Esami prenotati</a></li>
+			<li><a href="http://localhost:8080/UniPro/RestituisciAnagraficaStudenteServlet"> Anagrafica Studente</a></li>
+			<li><a href="http://localhost:8080/UniPro/RestituisciPianoDiStudiServlet"> Piano di Studi</a></li>
+			<li><a href="http://localhost:8080/UniPro/RestituisciEsamiServlet"> Prenota esame</a></li>
+			<li><a href="http://localhost:8080/UniPro/RestituisciAppelliPrenotatiServlet"> Esami prenotati</a></li>
 		</ul>
 
 	</body>

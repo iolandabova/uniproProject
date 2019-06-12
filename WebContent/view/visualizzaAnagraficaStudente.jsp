@@ -2,6 +2,8 @@
     pageEncoding="ISO-8859-1"%>
 <%@ page import="unipro.model.Studente" %>
 <%@ page import="constraintsAndUtil.Utils" %>
+<%@ page import = "java.util.Date" %>  
+<%@ page import = "java.text.SimpleDateFormat" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -9,13 +11,13 @@
 		<title>Anagrafica Studente</title>
 	</head>
 	<body>
-		<form method="post" action="./view/logInStudente.jsp">
+		<form method="post" action="http://localhost:8080/UniPro/view/logInStudente.jsp">
 		 	<div style="text-align:right;">
 				<input type="submit" name="esci" value="Logout"/>
 			</div>
 		</form>
-		
-		<form method="post" action="./view/accessoStudente.jsp">
+		<br>
+		<form method="post" action="http://localhost:8080/UniPro/view/accessoStudente.jsp">
 		 	<div style="text-align:right;">
 				<input type="submit" name="invia" value="Torna al menu principale"/>
 			</div>
@@ -24,7 +26,10 @@
 	<% 
 		Utils.checkedLogged(request, response);
 	
-		Studente s = (Studente) request.getAttribute("datiStudente"); %>
+		Studente s = (Studente) request.getAttribute("datiStudente");
+		String pattern = "dd-MM-yyyy";
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+		String date = simpleDateFormat.format(s.getDataNascita()); %>
 		
 		MATRICOLA 
 		<input type="text" name="matricola" value="<%= s.getMatricola() %>" readonly/> <br><br>
@@ -35,7 +40,7 @@
 		SESSO
 		<input type="text" name="sesso" value="<%= s.getSesso() %>" readonly/> <br><br>
 		DATA DI NASCITA
-		<input type="text" name="nascita" value="<%= s.getDataNascita() %>" readonly/> <br><br>
+		<input type="text" name="nascita" value="<%= date %>" readonly/> <br><br>
 		RESIDENTE IN
 		<input type="text" name="indirizzo" value="<%= s.getIndirizzo() %>" readonly/> <br><br>
 		CITTA'

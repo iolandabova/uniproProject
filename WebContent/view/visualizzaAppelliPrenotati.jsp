@@ -13,13 +13,13 @@
 		<title>Appelli prenotati</title>
 	</head>
 	<body>
-		<form method="post" action="./view/logInStudente.jsp">
+		<form method="post" action="http://localhost:8080/UniPro/view/logInStudente.jsp">
 		 	<div style="text-align:right;">
 				<input type="submit" name="esci" value="Logout"/>
 			</div>
 		</form>
-		
-		<form method="post" action="./view/accessoStudente.jsp">
+		<br>
+		<form method="post" action="http://localhost:8080/UniPro/view/accessoStudente.jsp">
 		 	<div style="text-align:right;">
 				<input type="submit" name="invia" value="Torna al menu principale"/>
 			</div>
@@ -41,7 +41,7 @@
 				String date = simpleDateFormat.format(ap.getData());
 			%>	
 				<tr>
-					<form method="post" action="./CancellaPrenotazioneAppelloServlet">
+					<form method="post" action="http://localhost:8080/UniPro/CancellaPrenotazioneAppelloServlet">
 						<td>
 							<%=ap.getNomeEsame()+" "+ date +" "+ap.getAula()+" "+ap.getCognomeDocente()+" "+ap.getNomeDocente()%>
 							<input type="hidden" name="idAppello" value=<%=ap.getIdAppello() %>>

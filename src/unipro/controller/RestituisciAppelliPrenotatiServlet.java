@@ -54,7 +54,7 @@ public class RestituisciAppelliPrenotatiServlet extends HttpServlet {
 		List<AppelloDTO> listaAppelliPrenotati = studenteDao.getAppelliPrenotati(matricola);
 		
 		request.setAttribute("listaAppelliPrenotati", listaAppelliPrenotati);
-		RequestDispatcher rd=request.getRequestDispatcher("./view/visualizzaAppelliPrenotati.jsp");
+		RequestDispatcher rd=request.getRequestDispatcher("/view/visualizzaAppelliPrenotati.jsp");
 		rd.forward(request, response);
 	}
 

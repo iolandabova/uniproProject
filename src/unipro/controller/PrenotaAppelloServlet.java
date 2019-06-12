@@ -53,7 +53,7 @@ public class PrenotaAppelloServlet extends HttpServlet {
 		Boolean ok = studenteDao.prenotaAppello(matricola, idAppelloScelto);
 		
 		request.setAttribute("esitoPrenotazione", ok);
-		RequestDispatcher rd=request.getRequestDispatcher("./RestituisciAppelliServlet");
+		RequestDispatcher rd=request.getRequestDispatcher("/RestituisciAppelliServlet");
 		
 		rd.forward(request, response);
 	}

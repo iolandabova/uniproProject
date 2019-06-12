@@ -5,7 +5,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-		<title>Area Riservata</title>
+		<title>Inserimento studente avvenuto</title>
 	</head>
 	<body>
 		<form method="post" action="http://localhost:8080/UniPro/view/logInAmministratore.jsp">
@@ -13,18 +13,14 @@
 				<input type="submit" name="esci" value="Logout"/>
 			</div>
 		</form>
-		<% 
-			Utils.checkedLogged(request, response);	
 		
-		    String username = (String) session.getAttribute("utenteRegistrato");
-		    String nomeAmm = (String) session.getAttribute("nomeAmministratore");
-		    String cognomeAmm = (String) session.getAttribute("cognomeAmministratore"); %>
-		   
-		<h1 align="center" style="font-family:verdana; color:green;">Benvenuto nel sito <%= nomeAmm+" "+cognomeAmm %>!</h1>
+		<% Utils.checkedLogged(request, response); %>
 		
-		<ul>
-			<li><a href="http://localhost:8080/UniPro/view/formRegistrazioneStudente.jsp"> Registra nuovo studente</a></li>
-		</ul>
-
+		<h2 align="center">Studente inserito correttamente nel sistema</h2>
+		   		<form method="post" action="http://localhost:8080/UniPro/view/accessoAmministratore.jsp">
+		   			<div style="text-align:center;">
+						<input type="submit" name="invia" value="Torna al menu principale"/>
+					</div>
+		   		</form>
 	</body>
 </html>

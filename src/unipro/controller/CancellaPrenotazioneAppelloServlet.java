@@ -53,7 +53,7 @@ public class CancellaPrenotazioneAppelloServlet extends HttpServlet {
 		Boolean ok = studenteDao.cancellaPrenotazioneAppello(matricola, idAppello);
 		
 		request.setAttribute("esitoCancellazione", ok);
-		RequestDispatcher rd=request.getRequestDispatcher("./RestituisciAppelliPrenotatiServlet");
+		RequestDispatcher rd=request.getRequestDispatcher("/RestituisciAppelliPrenotatiServlet");
 		
 		rd.forward(request, response);
 	}

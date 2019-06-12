@@ -47,7 +47,7 @@ public class LogInAmministratoreServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String username = request.getParameter("username");
+		String username = request.getParameter("username").toUpperCase();
 		String password = request.getParameter("password");
 		Amministratore amm = studenteDao.getByUsernamePassword(username, password);
 		
@@ -57,14 +57,14 @@ public class LogInAmministratoreServlet extends HttpServlet {
 			session.setAttribute("utenteRegistrato", amm.getUsername());
 			session.setAttribute("nomeAmministratore", amm.getNomeAmministratore());
 			session.setAttribute("cognomeAmministratore", amm.getCognomeAmministratore());
-			RequestDispatcher rd=request.getRequestDispatcher("./view/accessoAmministratore.jsp");
+			RequestDispatcher rd=request.getRequestDispatcher("/view/accessoAmministratore.jsp");
 			rd.forward(request, response);
 			
 			
 		} else {
 			
 			request.setAttribute("codiceErrore", ErrorCodes.WRONGLOGINAMM);
-			RequestDispatcher d = request.getRequestDispatcher("./view/gestoreErrori.jsp");
+			RequestDispatcher d = request.getRequestDispatcher("/view/gestoreErrori.jsp");
 			d.forward(request, response);
 		}
 	}

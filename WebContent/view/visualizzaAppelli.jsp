@@ -2,7 +2,9 @@
     pageEncoding="ISO-8859-1"%>   
 <%@ page import = "java.util.ArrayList" %> 
 <%@ page import = "unipro.model.dto.AppelloDTO" %>
-<%@ page import="constraintsAndUtil.Utils" %>  
+<%@ page import="constraintsAndUtil.Utils" %> 
+<%@ page import = "java.util.Date" %>  
+<%@ page import = "java.text.SimpleDateFormat" %> 
 <!DOCTYPE html>
 <html>
 	<head>
@@ -10,13 +12,13 @@
 		<title>Appelli disponibili</title>
 	</head>
 	<body>
-		<form method="post" action="./view/logInStudente.jsp">
+		<form method="post" action="http://localhost:8080/UniPro/view/logInStudente.jsp">
 		 	<div style="text-align:right;">
 				<input type="submit" name="esci" value="Logout"/>
 			</div>
 		</form>
-		
-		<form method="post" action="./view/accessoStudente.jsp">
+		<br>
+		<form method="post" action="http://localhost:8080/UniPro/view/accessoStudente.jsp">
 		 	<div style="text-align:right;">
 				<input type="submit" name="invia" value="Torna al menu principale"/>
 			</div>
@@ -26,19 +28,22 @@
 		
 			ArrayList<AppelloDTO> listaAppelli = (ArrayList<AppelloDTO>)request.getAttribute("listaAppelli");
 			Boolean esitoPrenotazione = (Boolean)request.getAttribute("esitoPrenotazione");
+			String pattern = "dd-MM-yyyy kk:mm";
+			SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 		%>
 		
-		<form method="post" action="./PrenotaAppelloServlet">
+		<form method="post" action="http://localhost:8080/UniPro/PrenotaAppelloServlet">
 			<table border="2">
 			<%
 			for(AppelloDTO ap : listaAppelli) {
+				String date = simpleDateFormat.format(ap.getData());
 			%>	
 				<tr>
 					<td>
 						<input type="radio" name="appelloScelto" value=<%=ap.getIdAppello() %>  >
 					</td>
 					<td>
-						<%=ap.getNomeEsame()+" "+ap.getData()+" "+ap.getAula()+" "+ap.getCognomeDocente()+" "+ap.getNomeDocente()%>
+						<%=ap.getNomeEsame()+" "+date+" "+ap.getAula()+" "+ap.getCognomeDocente()+" "+ap.getNomeDocente()%>
 					</td>			
 				</tr>
 			<% 

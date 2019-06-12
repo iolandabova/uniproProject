@@ -53,7 +53,7 @@ public class RicercaEsamiPerNomeServlet extends HttpServlet {
 		
 		request.setAttribute("listaEsamiPerNome", listaEsamiPerNome);
 		
-		RequestDispatcher rd=request.getRequestDispatcher("./view/visualizzaEsamiPerNome.jsp");
+		RequestDispatcher rd=request.getRequestDispatcher("/view/visualizzaEsamiPerNome.jsp");
 		rd.forward(request, response);
 	}
 

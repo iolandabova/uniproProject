@@ -57,14 +57,14 @@ public class LogInServlet extends HttpServlet {
 			session.setAttribute("utenteRegistrato", s.getMatricola());
 			session.setAttribute("nomeStudente", s.getNome());
 			session.setAttribute("cognomeStudente", s.getCognome());
-			RequestDispatcher rd=request.getRequestDispatcher("./view/accessoStudente.jsp");
+			RequestDispatcher rd=request.getRequestDispatcher("/view/accessoStudente.jsp");
 			rd.forward(request, response);
 			
 			
 		} else {
 			
 			request.setAttribute("codiceErrore", ErrorCodes.WRONGLOGIN);
-			RequestDispatcher d = request.getRequestDispatcher("./view/gestoreErrori.jsp");
+			RequestDispatcher d = request.getRequestDispatcher("/view/gestoreErrori.jsp");
 			d.forward(request, response);
 		}
 	}

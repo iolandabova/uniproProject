@@ -52,7 +52,7 @@ public class RestituisciEsamiServlet extends HttpServlet {
 		
 		request.setAttribute("listaEsami", listaEsami);
 		
-		RequestDispatcher rd=request.getRequestDispatcher("./view/visualizzaEsami.jsp");
+		RequestDispatcher rd=request.getRequestDispatcher("/view/visualizzaEsami.jsp");
 		rd.forward(request, response);
 	}
 

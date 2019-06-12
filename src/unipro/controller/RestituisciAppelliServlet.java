@@ -66,7 +66,7 @@ public class RestituisciAppelliServlet extends HttpServlet {
 		List<AppelloDTO> listaAppelli = appelloDao.getAllByIdEsame(idEsameScelto);
 
 		request.setAttribute("listaAppelli", listaAppelli);
-		RequestDispatcher rd=request.getRequestDispatcher("./view/visualizzaAppelli.jsp");
+		RequestDispatcher rd=request.getRequestDispatcher("/view/visualizzaAppelli.jsp");
 		rd.forward(request, response);
 	}
 

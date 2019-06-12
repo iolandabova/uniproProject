@@ -14,7 +14,7 @@
 		   if(errore == ErrorCodes.WRONGLOGIN) { %>
 		   
 		   		<h2 align="center" style="color:red">Matricola o password errati!</h2>
-		   		<form method="post" action="./view/logInStudente.jsp">
+		   		<form method="post" action="http://localhost:8080/UniPro/view/logInStudente.jsp">
 		   			<div style="text-align:center;">
 						<input type="submit" name="invia" value="Riprova"/>
 					</div>
@@ -26,7 +26,7 @@
 		   if(errore == ErrorCodes.LOGINNOTMADE) { %>
 		   
 		   		<h2 align="center" style="color:red">Devi effettuare l'accesso!</h2>
-		   		<form method="post" action="index.html">
+		   		<form method="post" action="http://localhost:8080/UniPro/index.html">
 		   			<div style="text-align:center;">
 						<input type="submit" name="invia" value="Effettua il Login"/>
 					</div>
@@ -38,12 +38,24 @@
 		   if(errore == ErrorCodes.WRONGLOGINAMM) { %>
 		   
 		   		<h2 align="center" style="color:red">Username o password errati!</h2>
-		   		<form method="post" action="./view/logInAmministratore.jsp">
+		   		<form method="post" action="http://localhost:8080/UniPro/view/logInAmministratore.jsp">
 		   			<div style="text-align:center;">
 						<input type="submit" name="invia" value="Riprova"/>
 					</div>
 		   		</form>
 		   		
 		<% } %> 
+		
+		<% 
+		   if(errore == ErrorCodes.ALREADYENTERED) { %>
+		   
+		   		<h2 align="center" style="color:red">Studente già inserito nel sistema!</h2>
+		   		<form method="post" action="http://localhost:8080/UniPro/view/accessoAmministratore.jsp">
+		   			<div style="text-align:center;">
+						<input type="submit" name="invia" value="Indietro"/>
+					</div>
+		   		</form>
+		   		
+		<% } %>
 	</body>
 </html>

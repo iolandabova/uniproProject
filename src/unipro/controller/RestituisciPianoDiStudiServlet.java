@@ -52,7 +52,7 @@ public class RestituisciPianoDiStudiServlet extends HttpServlet {
 		
 		request.setAttribute("listaEsami", listaEsami);
 		
-		RequestDispatcher rd=request.getRequestDispatcher("./view/visualizzaPianoDiStudi.jsp");
+		RequestDispatcher rd=request.getRequestDispatcher("/view/visualizzaPianoDiStudi.jsp");
 		rd.forward(request, response);
 	}
 

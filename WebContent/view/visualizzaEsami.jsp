@@ -10,13 +10,13 @@
 		<title>Esami disponibili</title>
 	</head>
 	<body>
-		<form method="post" action="./view/logInStudente.jsp">
+		<form method="post" action="http://localhost:8080/UniPro/view/logInStudente.jsp">
 		 	<div style="text-align:right;">
 				<input type="submit" name="esci" value="Logout"/>
 			</div>
 		</form>
-		
-		<form method="post" action="./view/accessoStudente.jsp">
+		<br>
+		<form method="post" action="http://localhost:8080/UniPro/view/accessoStudente.jsp">
 		 	<div style="text-align:right;">
 				<input type="submit" name="invia" value="Torna al menu principale"/>
 			</div>
@@ -27,7 +27,7 @@
 			ArrayList<Esame> listaEsami = (ArrayList<Esame>) request.getAttribute("listaEsami");
 		%>
 	
-		<form method="post" action="./RestituisciAppelliServlet">
+		<form method="post" action="http://localhost:8080/UniPro/RestituisciAppelliServlet">
 			<select name="esameScelto">
 			<option value="-">--scegli un esame--</option>
 			<%
@@ -41,7 +41,7 @@
 			<input type="submit" name="invia" value="Ok"/>
 		</form>
 		<br><br>
-		<form method="post" action="./RicercaEsamiPerNomeServlet">
+		<form method="post" action="http://localhost:8080/UniPro/RicercaEsamiPerNomeServlet">
 			<input type="text" name="ricercaEsame" value="Cerca">
 			<input type="submit" name="invia" value="Ok"/>
 		</form>

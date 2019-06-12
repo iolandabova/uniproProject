@@ -90,13 +90,6 @@ public class StudenteDaoImpl implements StudenteDAO {
 				s.setEmail(rs.getString("email"));
 				s.setPassword(rs.getString("password"));
 				
-//				Date newDate = rs.getDate("datanascita");
-//				s.setDataNascita(newDate);
-				
-//				java.sql.Date dataGrezza = rs.getDate("datanascita");
-//				long nsec = dataGrezza.getTime();
-//				Date dataRaffinata = new Date(nsec);
-//				s.setDataNascita(dataRaffinata);	
 			}
 			ps.close();
 			

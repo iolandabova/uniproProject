@@ -14,7 +14,7 @@ public class Utils {
 		if(request.getSession().getAttribute("utenteRegistrato") == null) {
 	
 			request.setAttribute("codiceErrore", ErrorCodes.LOGINNOTMADE);
-			RequestDispatcher d = request.getRequestDispatcher("./gestoreErrori.jsp");
+			RequestDispatcher d = request.getRequestDispatcher("/view/gestoreErrori.jsp");
 			d.forward(request, response);
 		}
 	}

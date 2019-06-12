@@ -53,7 +53,7 @@ public class RestituisciAnagraficaStudenteServlet extends HttpServlet {
 		Studente s = studenteDao.getByMatricola(matricola);
 		
 		request.setAttribute("datiStudente", s);
-		RequestDispatcher rd=request.getRequestDispatcher("./view/visualizzaAnagraficaStudente.jsp");
+		RequestDispatcher rd=request.getRequestDispatcher("/view/visualizzaAnagraficaStudente.jsp");
 		rd.forward(request, response);
 	}
 
