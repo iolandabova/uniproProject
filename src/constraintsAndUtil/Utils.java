@@ -10,11 +10,10 @@ import javax.servlet.http.HttpServletResponse;
 public class Utils {
 	
 	public static void checkedLogged(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("SONO DENTRO!!");
-		System.out.println(request.getSession().getAttribute("utenteRegistrato"));
+		
 		if(request.getSession().getAttribute("utenteRegistrato") == null) {
-			System.out.println("SONO DENTRO2!!");
-			request.setAttribute("codiceErrore", ErrorCodes.NOTMADELOGIN);
+	
+			request.setAttribute("codiceErrore", ErrorCodes.LOGINNOTMADE);
 			RequestDispatcher d = request.getRequestDispatcher("./gestoreErrori.jsp");
 			d.forward(request, response);
 		}

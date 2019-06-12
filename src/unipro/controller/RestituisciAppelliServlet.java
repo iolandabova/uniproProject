@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import constraintsAndUtil.Utils;
 import unipro.model.Appello;
 import unipro.model.Docente;
 import unipro.model.dao.AppelloDAO;
@@ -50,6 +51,8 @@ public class RestituisciAppelliServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		Utils.checkedLogged(request, response);
 		
 		String idEsameScelto = request.getParameter("esameScelto");
 		

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import constraintsAndUtil.Utils;
 import unipro.model.dao.StudenteDAO;
 import unipro.model.dao.impl.StudenteDaoImpl;
 
@@ -43,6 +44,8 @@ public class PrenotaAppelloServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		Utils.checkedLogged(request, response);
 		
 		String idAppelloScelto = request.getParameter("appelloScelto");
 		HttpSession session = request.getSession(true);

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import constraintsAndUtil.Utils;
 import unipro.model.Esame;
 import unipro.model.dao.EsameDAO;
 import unipro.model.dao.impl.EsameDaoImpl;
@@ -44,6 +45,8 @@ public class RestituisciPianoDiStudiServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		Utils.checkedLogged(request, response);
 		
 		List<Esame> listaEsami = esameDao.getAll();
 		

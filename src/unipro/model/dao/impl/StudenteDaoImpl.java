@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 import unipro.connection.DbConnection;
+import unipro.model.Amministratore;
 import unipro.model.Studente;
 import unipro.model.dao.StudenteDAO;
 import unipro.model.dto.AppelloDTO;
@@ -277,6 +278,33 @@ public class StudenteDaoImpl implements StudenteDAO {
 		}
 		return listaAppelliPrenotati;
 		
+	}
+
+	@Override
+	public Amministratore getByUsernamePassword(String username, String password) {
+		
+		Amministratore amm = null;
+		String query="select * from amministratore where username=? and password=?";
+		try {
+			
+			PreparedStatement ps=dbConn.getConn().prepareStatement(query);
+			ps.setString(1, username);
+			ps.setString(2, password);
+			ResultSet rs=ps.executeQuery();
+			if(rs.next()) {
+				amm = new Amministratore();
+				
+				amm.setUsername(username);
+				amm.setPassword(password);
+				amm.setNomeAmministratore(rs.getString("nomeamministratore"));
+				amm.setCognomeAmministratore(rs.getString("cognomeamministratore"));
+			}
+			ps.close();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return amm;
 	}
 	
 }

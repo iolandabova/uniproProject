@@ -1,6 +1,7 @@
 package unipro.controller;
 
 import java.io.IOException;
+import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -11,17 +12,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import constraintsAndUtil.ErrorCodes;
-import constraintsAndUtil.Utils;
 import unipro.model.Studente;
 import unipro.model.dao.StudenteDAO;
 import unipro.model.dao.impl.StudenteDaoImpl;
 
 /**
- * Servlet implementation class LogInServlet
+ * Servlet implementation class RegistrazioneStudenteServlet
  */
-@WebServlet("/LogInServlet")
-public class LogInServlet extends HttpServlet {
+@WebServlet("/RegistrazioneStudenteServlet")
+public class RegistrazioneStudenteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private static StudenteDAO studenteDao;
@@ -29,7 +28,7 @@ public class LogInServlet extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LogInServlet() {
+    public RegistrazioneStudenteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -48,22 +47,31 @@ public class LogInServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String matricola = request.getParameter("matricola");
-		String password = request.getParameter("pass");
-		Studente s = studenteDao.getByMatricolaPassword(matricola, password);
+		Studente st = studenteDao.getByMatricola(matricola);
+		int error = 0;
 		
-		if(s != null) {
+		if(st == null) {
 			
-			HttpSession session = request.getSession(true);
-			session.setAttribute("utenteRegistrato", s.getMatricola());
-			session.setAttribute("nomeStudente", s.getNome());
-			session.setAttribute("cognomeStudente", s.getCognome());
-			RequestDispatcher rd=request.getRequestDispatcher("./view/accessoStudente.jsp");
+			String password = request.getParameter("pass");
+			String nome = request.getParameter("nome");
+			String cognome = request.getParameter("cognome");
+			String dataNascita = request.getParameter("nascita");
+			Studente s = new Studente();
+			s.setMatricola(matricola);
+			s.setPassword(password);
+			s.setNome(nome);
+			s.setCognome(cognome);
+			//u.setDataNascita(dataNascita);
+			
+			studenteDao.save(s);
+			
+			RequestDispatcher rd=request.getRequestDispatcher("./view/login.jsp");
 			rd.forward(request, response);
-			
 			
 		} else {
 			
-			request.setAttribute("codiceErrore", ErrorCodes.WRONGLOGIN);
+			error = 2; 
+			request.setAttribute("errore", error);
 			RequestDispatcher d = request.getRequestDispatcher("./view/gestoreErrori.jsp");
 			d.forward(request, response);
 		}

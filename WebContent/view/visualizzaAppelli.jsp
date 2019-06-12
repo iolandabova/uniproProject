@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>   
 <%@ page import = "java.util.ArrayList" %> 
-<%@ page import = "unipro.model.dto.AppelloDTO" %>    
+<%@ page import = "unipro.model.dto.AppelloDTO" %>
+<%@ page import="constraintsAndUtil.Utils" %>  
 <!DOCTYPE html>
 <html>
 	<head>
@@ -9,12 +10,20 @@
 		<title>Appelli disponibili</title>
 	</head>
 	<body>
+		<form method="post" action="./view/logInStudente.jsp">
+		 	<div style="text-align:right;">
+				<input type="submit" name="esci" value="Logout"/>
+			</div>
+		</form>
+		
 		<form method="post" action="./view/accessoStudente.jsp">
 		 	<div style="text-align:right;">
 				<input type="submit" name="invia" value="Torna al menu principale"/>
 			</div>
 		</form>
 		<% 
+			Utils.checkedLogged(request, response);
+		
 			ArrayList<AppelloDTO> listaAppelli = (ArrayList<AppelloDTO>)request.getAttribute("listaAppelli");
 			Boolean esitoPrenotazione = (Boolean)request.getAttribute("esitoPrenotazione");
 		%>
@@ -43,7 +52,7 @@
 					
 			<% } else if(esitoPrenotazione != null){ %>
 					
-					<div>PRENOTAZIONE non EFFETTUATA</div>
+					<div>PRENOTAZIONE non EFFETTUATA - Hai già prenotato quest'appello</div>
 					
 			<% } %>
 		</form>

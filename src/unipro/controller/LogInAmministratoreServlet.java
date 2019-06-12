@@ -12,16 +12,16 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import constraintsAndUtil.ErrorCodes;
-import constraintsAndUtil.Utils;
+import unipro.model.Amministratore;
 import unipro.model.Studente;
 import unipro.model.dao.StudenteDAO;
 import unipro.model.dao.impl.StudenteDaoImpl;
 
 /**
- * Servlet implementation class LogInServlet
+ * Servlet implementation class LogInAmministratoreServlet
  */
-@WebServlet("/LogInServlet")
-public class LogInServlet extends HttpServlet {
+@WebServlet("/LogInAmministratoreServlet")
+public class LogInAmministratoreServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private static StudenteDAO studenteDao;
@@ -29,7 +29,7 @@ public class LogInServlet extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LogInServlet() {
+    public LogInAmministratoreServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -47,23 +47,23 @@ public class LogInServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String matricola = request.getParameter("matricola");
-		String password = request.getParameter("pass");
-		Studente s = studenteDao.getByMatricolaPassword(matricola, password);
+		String username = request.getParameter("username");
+		String password = request.getParameter("password");
+		Amministratore amm = studenteDao.getByUsernamePassword(username, password);
 		
-		if(s != null) {
+		if(amm != null) {
 			
 			HttpSession session = request.getSession(true);
-			session.setAttribute("utenteRegistrato", s.getMatricola());
-			session.setAttribute("nomeStudente", s.getNome());
-			session.setAttribute("cognomeStudente", s.getCognome());
-			RequestDispatcher rd=request.getRequestDispatcher("./view/accessoStudente.jsp");
+			session.setAttribute("utenteRegistrato", amm.getUsername());
+			session.setAttribute("nomeAmministratore", amm.getNomeAmministratore());
+			session.setAttribute("cognomeAmministratore", amm.getCognomeAmministratore());
+			RequestDispatcher rd=request.getRequestDispatcher("./view/accessoAmministratore.jsp");
 			rd.forward(request, response);
 			
 			
 		} else {
 			
-			request.setAttribute("codiceErrore", ErrorCodes.WRONGLOGIN);
+			request.setAttribute("codiceErrore", ErrorCodes.WRONGLOGINAMM);
 			RequestDispatcher d = request.getRequestDispatcher("./view/gestoreErrori.jsp");
 			d.forward(request, response);
 		}

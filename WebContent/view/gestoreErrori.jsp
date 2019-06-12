@@ -10,11 +10,11 @@
 	<body>
 		<% Object errorGrezzo = request.getAttribute("codiceErrore");
 		   int errore = (int) errorGrezzo; 	
-		   out.println(errorGrezzo);
+		   
 		   if(errore == ErrorCodes.WRONGLOGIN) { %>
 		   
-		   		<h2 align="center" style="color:red">Nome utente o password errati!</h2>
-		   		<form method="post" action="logInStudente.html">
+		   		<h2 align="center" style="color:red">Matricola o password errati!</h2>
+		   		<form method="post" action="./view/logInStudente.jsp">
 		   			<div style="text-align:center;">
 						<input type="submit" name="invia" value="Riprova"/>
 					</div>
@@ -23,13 +23,24 @@
 		<% } %> 
 		
 		<% 
-		   
-		   if(errore == ErrorCodes.NOTMADELOGIN) { %>
+		   if(errore == ErrorCodes.LOGINNOTMADE) { %>
 		   
 		   		<h2 align="center" style="color:red">Devi effettuare l'accesso!</h2>
-		   		<form method="post" action="../logInStudente.html">
+		   		<form method="post" action="index.html">
 		   			<div style="text-align:center;">
 						<input type="submit" name="invia" value="Effettua il Login"/>
+					</div>
+		   		</form>
+		   		
+		<% } %> 
+		
+		<% 
+		   if(errore == ErrorCodes.WRONGLOGINAMM) { %>
+		   
+		   		<h2 align="center" style="color:red">Username o password errati!</h2>
+		   		<form method="post" action="./view/logInAmministratore.jsp">
+		   			<div style="text-align:center;">
+						<input type="submit" name="invia" value="Riprova"/>
 					</div>
 		   		</form>
 		   		

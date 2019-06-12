@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="unipro.model.Studente" %>
+<%@ page import="constraintsAndUtil.Utils" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -8,13 +9,22 @@
 		<title>Anagrafica Studente</title>
 	</head>
 	<body>
+		<form method="post" action="./view/logInStudente.jsp">
+		 	<div style="text-align:right;">
+				<input type="submit" name="esci" value="Logout"/>
+			</div>
+		</form>
+		
 		<form method="post" action="./view/accessoStudente.jsp">
 		 	<div style="text-align:right;">
 				<input type="submit" name="invia" value="Torna al menu principale"/>
 			</div>
 		 </form>
 	
-		<% Studente s = (Studente) request.getAttribute("datiStudente"); %>
+	<% 
+		Utils.checkedLogged(request, response);
+	
+		Studente s = (Studente) request.getAttribute("datiStudente"); %>
 		
 		MATRICOLA 
 		<input type="text" name="matricola" value="<%= s.getMatricola() %>" readonly/> <br><br>
