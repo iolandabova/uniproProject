@@ -8,8 +8,8 @@ import unipro.model.dto.AppelloDTO;
 
 public interface StudenteDAO {
 	
-	public void save(Studente s);									
-	public void deleteByMatricola(String matricola);									
+	public boolean save(Studente s);									
+	public boolean deleteByMatricola(String matricola);									
 	public Studente getByMatricola(String matricola);	
 	public Studente getByMatricolaPassword(String matricola, String password);
 	public void update(Studente s);									

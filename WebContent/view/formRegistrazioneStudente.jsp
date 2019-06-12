@@ -20,7 +20,8 @@
 			</div>
 		</form>
 		
-		<% Utils.checkedLogged(request, response); %>
+		<% Utils.checkedLogged(request, response);
+		   Boolean esitoRegistrazione = (Boolean)request.getAttribute("esitoRegistrazioneStudente");%>
 		
 		<h1 align="center">Registra nuovo studente</h1>
 		<h2 align="center">Inserisci i dati in MAIUSCOLO </h2>
@@ -48,6 +49,15 @@
 				<input type="submit" name="invia" value="Registra"/> <br><br>
 			</div>
 		</form>
+			<% if(esitoRegistrazione != null && esitoRegistrazione.booleanValue() == true) { %>
+				
+					<div>STUDENTE INSERITO CORRETTAMENTE NEL SISTEMA</div>
+					
+			<% } else if(esitoRegistrazione != null) { %>
+					
+					<div>REGISTRAZIONE STUDENTE non RIUSCITA - Email già esistente</div>
+					
+			<% } %>
 
 	</body>
 </html>

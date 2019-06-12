@@ -23,9 +23,10 @@ public class StudenteDaoImpl implements StudenteDAO {
 	}
 
 	@Override
-	public void save(Studente s) {
+	public boolean save(Studente s) {
 		
 		String query="insert into studente(matricola, nome, cognome, sesso, datanascita, indirizzo, citta, email, password) values (?,?,?,?,?,?,?,?,?)";
+		boolean save = false;
 		
 		try {
 			PreparedStatement ps = dbConn.getConn().prepareStatement(query);
@@ -41,31 +42,36 @@ public class StudenteDaoImpl implements StudenteDAO {
 			ps.setString(8, s.getEmail());
 			ps.setString(9, s.getPassword());
 			
-			ps.executeUpdate();
+			if (ps.executeUpdate() > 0)
+				save = true;
 			
 			ps.close();
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return save;
 	}
 
 	@Override
-	public void deleteByMatricola(String matricola) {
+	public boolean deleteByMatricola(String matricola) {
 		
 		String query="delete from studente where matricola=?";
+		boolean delete = false;
 	
 		try {
 			PreparedStatement ps = dbConn.getConn().prepareStatement(query);
 			ps.setString(1, matricola);
-			ps.executeUpdate();
+			
+			if (ps.executeUpdate() > 0)
+				delete = true;
 			
 			ps.close();
 			
 		} catch (SQLException e) {
 				e.printStackTrace();
 		}
-
+		return delete;
 	}
 
 	@Override

@@ -86,9 +86,10 @@ public class RegistrazioneStudenteServlet extends HttpServlet {
 			s.setEmail(email);
 			s.setPassword(password);
 			
-			studenteDao.save(s);
+			Boolean ok = studenteDao.save(s);
 			
-			RequestDispatcher rd=request.getRequestDispatcher("/view/visualizzaInserimentoStudenteAvvenuto.jsp");
+			request.setAttribute("esitoRegistrazioneStudente", ok);
+			RequestDispatcher rd=request.getRequestDispatcher("/view/formRegistrazioneStudente.jsp");
 			rd.forward(request, response);
 			
 		} else {

@@ -24,6 +24,7 @@
 		
 		<ul>
 			<li><a href="http://localhost:8080/UniPro/view/formRegistrazioneStudente.jsp"> Registra nuovo studente</a></li>
+			<li><a href="http://localhost:8080/UniPro/view/cancellaStudentePerMatricola.jsp"> Elimina studente dal sistema</a></li>
 		</ul>
 
 	</body>

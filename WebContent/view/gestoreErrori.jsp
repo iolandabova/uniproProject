@@ -49,7 +49,7 @@
 		<% 
 		   if(errore == ErrorCodes.ALREADYENTERED) { %>
 		   
-		   		<h2 align="center" style="color:red">Studente già inserito nel sistema!</h2>
+		   		<h2 align="center" style="color:red">Studente già presente nel sistema!</h2>
 		   		<form method="post" action="http://localhost:8080/UniPro/view/accessoAmministratore.jsp">
 		   			<div style="text-align:center;">
 						<input type="submit" name="invia" value="Indietro"/>
