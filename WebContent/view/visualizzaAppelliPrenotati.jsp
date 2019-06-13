@@ -11,11 +11,32 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<title>Appelli prenotati</title>
+		<style>
+			log {
+					text-align: center;
+	    			position: fixed;
+	   				width : 100%;
+	   				font-family : "Cambria";
+	   				font-size: 30px;
+	   				top: 180px;
+				}
+				
+		  alert {
+					text-align: center;
+	    			position: fixed;
+	   				width : 100%;
+	   				font-family : "Cambria";
+	   				font-size: 20px;
+	   				color: #A00000;
+	   				top: 600px;
+				}
+		</style>	
 		<link rel = "stylesheet" href = "http://localhost:8080/UniPro/css/progetto.css" type = "text/css">
 	</head>
 	<body>
 		<img src = "http://localhost:8080/UniPro/images/corona.png" width = "90px" height = "80px" hspace = "5px"/>
 		<logo> UniPro </logo> <br>	
+		
 		<form method="post" action="http://localhost:8080/UniPro/view/logInStudente.jsp">
 		 	<div style="text-align:right;">
 				<input type="submit" name="esci" value="Logout"/>
@@ -36,7 +57,9 @@
 			SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 			
 		%>
+			<log> <b>Elenco esami prenotati </b> </log>
 		
+			<br><br><br><br><br><br><br>
 		
 			<table border="2">
 			<%
@@ -46,7 +69,7 @@
 				<tr>
 					<form method="post" action="http://localhost:8080/UniPro/CancellaPrenotazioneAppelloServlet">
 						<td>
-							<%=ap.getNomeEsame()+" "+ date +" "+ap.getAula()+" "+ap.getCognomeDocente()+" "+ap.getNomeDocente()%>
+							<%=ap.getNomeEsame()+" "+ date +" aula "+ap.getAula()+" "+ap.getCognomeDocente()+" "+ap.getNomeDocente()%>
 							<input type="hidden" name="idAppello" value=<%=ap.getIdAppello() %>>
 						
 						</td>
@@ -62,7 +85,7 @@
 		
 		<% if(esitoCancellazione != null && esitoCancellazione.booleanValue() == true) { %>
 				
-					<div>PRENOTAZIONE CANCELLATA</div>
+					<alert><b>PRENOTAZIONE CANCELLATA</b></alert>
 					
 		<% } %>
 	</body>

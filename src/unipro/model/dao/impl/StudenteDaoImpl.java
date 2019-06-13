@@ -19,7 +19,7 @@ public class StudenteDaoImpl implements StudenteDAO {
 	
 	public StudenteDaoImpl() {
 		
-		dbConn=DbConnection.getConnection();
+		dbConn=DbConnection.getDbConnection();
 	}
 
 	@Override
@@ -29,12 +29,13 @@ public class StudenteDaoImpl implements StudenteDAO {
 		boolean save = false;
 		
 		try {
-			PreparedStatement ps = dbConn.getConn().prepareStatement(query);
+			PreparedStatement ps = dbConn.getConnection().prepareStatement(query);
 			ps.setString(1, s.getMatricola());
 			ps.setString(2, s.getNome());
 			ps.setString(3, s.getCognome());
 			ps.setString(4, s.getSesso());
 			Date d = s.getDataNascita();
+			System.out.println(d);
 			java.sql.Date sd = new java.sql.Date(d.getTime());
 			ps.setDate(5, sd);
 			ps.setString(6, s.getIndirizzo());
@@ -60,7 +61,7 @@ public class StudenteDaoImpl implements StudenteDAO {
 		boolean delete = false;
 	
 		try {
-			PreparedStatement ps = dbConn.getConn().prepareStatement(query);
+			PreparedStatement ps = dbConn.getConnection().prepareStatement(query);
 			ps.setString(1, matricola);
 			
 			if (ps.executeUpdate() > 0)
@@ -81,7 +82,7 @@ public class StudenteDaoImpl implements StudenteDAO {
 		String query="select * from studente where matricola=?";
 		try {
 			
-			PreparedStatement ps=dbConn.getConn().prepareStatement(query);
+			PreparedStatement ps=dbConn.getConnection().prepareStatement(query);
 			ps.setString(1, matricola);
 			ResultSet rs=ps.executeQuery();
 			if(rs.next()) {
@@ -106,13 +107,13 @@ public class StudenteDaoImpl implements StudenteDAO {
 	}
 	
 	@Override
-	public Studente getByMatricolaPassword(String matricola, String password) {
+	public Studente getStudentByMatricolaPassword(String matricola, String password) {
 		
 		Studente s = null;
 		String query="select * from studente where matricola=? and password=?";
 		try {
 			
-			PreparedStatement ps=dbConn.getConn().prepareStatement(query);
+			PreparedStatement ps=dbConn.getConnection().prepareStatement(query);
 			ps.setString(1, matricola);
 			ps.setString(2, password);
 			ResultSet rs=ps.executeQuery();
@@ -142,7 +143,7 @@ public class StudenteDaoImpl implements StudenteDAO {
 		String query="update studente set nome=?, cognome=?, sesso=?, datanascita=?, indirizzo=?, citta=?, email=?, password=? where matricola=?";
 		
 		try {
-			PreparedStatement ps = dbConn.getConn().prepareStatement(query);
+			PreparedStatement ps = dbConn.getConnection().prepareStatement(query);
 			ps.setString(1, s.getNome());
 			ps.setString(2, s.getCognome());
 			ps.setString(3, s.getSesso());
@@ -174,7 +175,7 @@ public class StudenteDaoImpl implements StudenteDAO {
 		
 		try {
 			
-			PreparedStatement ps=dbConn.getConn().prepareStatement(query);
+			PreparedStatement ps=dbConn.getConnection().prepareStatement(query);
 			ResultSet rs=ps.executeQuery();
 			
 			while(rs.next()) {
@@ -208,7 +209,7 @@ public class StudenteDaoImpl implements StudenteDAO {
 		
 		try {
 			
-			PreparedStatement ps= dbConn.getConn().prepareStatement(query);
+			PreparedStatement ps= dbConn.getConnection().prepareStatement(query);
 			ps.setString(1, matricola);
 			ps.setString(2, idAppello);
 			
@@ -231,7 +232,7 @@ public class StudenteDaoImpl implements StudenteDAO {
 		
 		try {
 			
-			PreparedStatement ps= dbConn.getConn().prepareStatement(query);
+			PreparedStatement ps= dbConn.getConnection().prepareStatement(query);
 			ps.setString(1, matricola);
 			ps.setString(2, idAppello);
 			
@@ -255,7 +256,7 @@ public class StudenteDaoImpl implements StudenteDAO {
 		
 		try {
 			
-			PreparedStatement ps= dbConn.getConn().prepareStatement(query);
+			PreparedStatement ps= dbConn.getConnection().prepareStatement(query);
 			ps.setString(1, matricola);
 			ResultSet rs = ps.executeQuery();
 			
@@ -280,13 +281,13 @@ public class StudenteDaoImpl implements StudenteDAO {
 	}
 
 	@Override
-	public Amministratore getByUsernamePassword(String username, String password) {
+	public Amministratore getAdminByUsernamePassword(String username, String password) {
 		
 		Amministratore amm = null;
 		String query="select * from amministratore where username=? and password=?";
 		try {
 			
-			PreparedStatement ps=dbConn.getConn().prepareStatement(query);
+			PreparedStatement ps=dbConn.getConnection().prepareStatement(query);
 			ps.setString(1, username);
 			ps.setString(2, password);
 			ResultSet rs=ps.executeQuery();

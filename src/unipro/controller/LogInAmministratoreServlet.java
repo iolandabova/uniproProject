@@ -49,7 +49,7 @@ public class LogInAmministratoreServlet extends HttpServlet {
 		
 		String username = request.getParameter("username").toUpperCase();
 		String password = request.getParameter("password");
-		Amministratore amm = studenteDao.getByUsernamePassword(username, password);
+		Amministratore amm = studenteDao.getAdminByUsernamePassword(username, password);
 		
 		if(amm != null) {
 			

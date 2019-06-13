@@ -8,6 +8,16 @@
 	<head>
 		<meta charset="ISO-8859-1">
 		<title>Esami disponibili</title>
+		<style>
+			log {
+					text-align: center;
+	    			position: fixed;
+	   				width : 100%;
+	   				font-family : "Cambria";
+	   				font-size: 30px;
+	   				top: 180px;
+				}
+		</style>	
 		<link rel = "stylesheet" href = "http://localhost:8080/UniPro/css/progetto.css" type = "text/css">
 	</head>
 	<body>
@@ -29,6 +39,10 @@
 		
 			ArrayList<Esame> listaEsami = (ArrayList<Esame>) request.getAttribute("listaEsami");
 		%>
+		
+		<log> <b>Prenota esame </b> </log>
+		
+		<br><br><br><br><br><br><br>
 	
 		<form method="post" action="http://localhost:8080/UniPro/RestituisciAppelliServlet">
 			<select name="esameScelto">
@@ -45,7 +59,7 @@
 		</form>
 		<br><br>
 		<form method="post" action="http://localhost:8080/UniPro/RicercaEsamiPerNomeServlet">
-			<input type="text" name="ricercaEsame" value="Cerca">
+			<input type="text" name="ricercaEsame" value="Cerca per nome">
 			<input type="submit" name="invia" value="Ok"/>
 		</form>
 		

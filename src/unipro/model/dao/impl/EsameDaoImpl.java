@@ -16,7 +16,7 @@ public class EsameDaoImpl implements EsameDAO{
 	
 	public EsameDaoImpl() {
 		
-		dbConn=DbConnection.getConnection();
+		dbConn=DbConnection.getDbConnection();
 	}
 	
 	@Override
@@ -26,7 +26,7 @@ public class EsameDaoImpl implements EsameDAO{
 		
 		try {
 			
-			PreparedStatement ps = dbConn.getConn().prepareStatement(query);
+			PreparedStatement ps = dbConn.getConnection().prepareStatement(query);
 			ps.setString(1, es.getIdEsame());
 			ps.setString(2, es.getNomeEsame());
 			ps.setInt(3, es.getCfu());
@@ -45,7 +45,7 @@ public class EsameDaoImpl implements EsameDAO{
 		
 		String query = "delete from esame where idesame = ?";
 		try {
-			PreparedStatement ps = dbConn.getConn().prepareStatement(query);
+			PreparedStatement ps = dbConn.getConnection().prepareStatement(query);
 			ps.setString(1, idEsame);
 			
 			ps.executeUpdate();
@@ -62,7 +62,7 @@ public class EsameDaoImpl implements EsameDAO{
 		String query="select * from esame where idesame=?";
 		try {
 			
-			PreparedStatement ps = dbConn.getConn().prepareStatement(query);
+			PreparedStatement ps = dbConn.getConnection().prepareStatement(query);
 			ps.setString(1, idEsame);
 			ResultSet rs=ps.executeQuery();
 			if(rs.next()) {
@@ -88,7 +88,7 @@ public class EsameDaoImpl implements EsameDAO{
 		String query="select * from esame where nomeesame like ?";
 		try {
 			
-			PreparedStatement ps = dbConn.getConn().prepareStatement(query);
+			PreparedStatement ps = dbConn.getConnection().prepareStatement(query);
 			ps.setString(1, "%"+nomeEsame.toUpperCase()+"%");
 			ResultSet rs=ps.executeQuery();
 			while(rs.next()) {
@@ -114,7 +114,7 @@ public class EsameDaoImpl implements EsameDAO{
 		String query="update esame set nomeesame=?, cfu=? where idesame=?";
 		
 		try {
-			PreparedStatement ps = dbConn.getConn().prepareStatement(query);
+			PreparedStatement ps = dbConn.getConnection().prepareStatement(query);
 			ps.setString(1, es.getIdEsame());
 			ps.setString(2, es.getNomeEsame());
 			ps.setInt(3, es.getCfu());
@@ -136,7 +136,7 @@ public class EsameDaoImpl implements EsameDAO{
 		Esame es = null;
 		String query = "select * from esame";
 		try {
-			PreparedStatement ps=dbConn.getConn().prepareStatement(query);
+			PreparedStatement ps=dbConn.getConnection().prepareStatement(query);
 			ResultSet rs=ps.executeQuery();
 			
 			while(rs.next()) {

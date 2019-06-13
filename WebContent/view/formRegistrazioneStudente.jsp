@@ -6,8 +6,41 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<title>Registra nuovo studente</title>
+		<style>
+			log {
+					text-align: center;
+	    			position: fixed;
+	   				width : 100%;
+	   				font-family : "Cambria";
+	   				font-size: 30px;
+	   				top: 180px;
+				}
+				
+		logDue {
+					text-align: center;
+	    			position: fixed;
+	   				width : 100%;
+	   				font-family : "Cambria";
+	   				font-size: 20px;
+	   				top: 230px;
+				}
+				
+		  alert {
+					text-align: center;
+	    			position: fixed;
+	   				width : 100%;
+	   				font-family : "Cambria";
+	   				font-size: 20px;
+	   				color: #A00000;
+	   				top: 600px;
+				}
+		</style>	
+		<link rel = "stylesheet" href = "http://localhost:8080/UniPro/css/progetto.css" type = "text/css">
 	</head>
 	<body>
+		<img src = "http://localhost:8080/UniPro/images/corona.png" width = "90px" height = "80px" hspace = "5px"/>
+		<logo> UniPro </logo> <br>
+		
 		<form method="post" action="http://localhost:8080/UniPro/view/logInAmministratore.jsp">
 		 	<div style="text-align:right;">
 				<input type="submit" name="esci" value="Logout"/>
@@ -23,8 +56,10 @@
 		<% Utils.checkedLogged(request, response);
 		   Boolean esitoRegistrazione = (Boolean)request.getAttribute("esitoRegistrazioneStudente");%>
 		
-		<h1 align="center">Registra nuovo studente</h1>
-		<h2 align="center">Inserisci i dati in MAIUSCOLO </h2>
+		<log> <b>Registra nuovo studente</b></log>
+		<logDue> <b>(Inserisci i dati in MAIUSCOLO)</b></logDue>
+		<br><br><br><br><br><br><br><br><br>
+		
 		<form method="post" action="http://localhost:8080/UniPro/RegistrazioneStudenteServlet">
 			<div style="text-align:left;">
 				
@@ -51,11 +86,11 @@
 		</form>
 			<% if(esitoRegistrazione != null && esitoRegistrazione.booleanValue() == true) { %>
 				
-					<div>STUDENTE INSERITO CORRETTAMENTE NEL SISTEMA</div>
+					<alert><b>STUDENTE INSERITO CORRETTAMENTE NEL SISTEMA</b></alert>
 					
 			<% } else if(esitoRegistrazione != null) { %>
 					
-					<div>REGISTRAZIONE STUDENTE non RIUSCITA - Email già esistente</div>
+					<alert><b>REGISTRAZIONE STUDENTE non RIUSCITA - Email già esistente</b></alert>
 					
 			<% } %>
 

@@ -17,7 +17,7 @@ public class DocenteDaoImpl implements DocenteDAO {
 	
 	public DocenteDaoImpl() {
 		
-		dbConn=DbConnection.getConnection();
+		dbConn=DbConnection.getDbConnection();
 	}
 
 	@Override
@@ -27,7 +27,7 @@ public class DocenteDaoImpl implements DocenteDAO {
 		
 		try {
 			
-			PreparedStatement ps= dbConn.getConn().prepareStatement(query);
+			PreparedStatement ps= dbConn.getConnection().prepareStatement(query);
 			ps.setString(1, d.getIdDocente());
 			ps.setString(2, d.getNome());
 			ps.setString(3, d.getCognome());
@@ -48,7 +48,7 @@ public class DocenteDaoImpl implements DocenteDAO {
 		
 		try {
 			
-			PreparedStatement ps = dbConn.getConn().prepareStatement(query);
+			PreparedStatement ps = dbConn.getConnection().prepareStatement(query);
 			ps.setString(1, idDocente);
 			ps.executeUpdate();
 			ps.close();
@@ -66,7 +66,7 @@ public class DocenteDaoImpl implements DocenteDAO {
 		String query="select * from docente where iddocente=?";
 		try {
 			
-			PreparedStatement ps=dbConn.getConn().prepareStatement(query);
+			PreparedStatement ps=dbConn.getConnection().prepareStatement(query);
 			ps.setString(1, idDocente);
 			ResultSet rs=ps.executeQuery();
 			if(rs.next()) {
@@ -91,7 +91,7 @@ public class DocenteDaoImpl implements DocenteDAO {
 		String query = "update docente set nome = ?, cognome = ?, sesso = ? where iddocente = ?";
 		
 		try {
-			PreparedStatement ps=dbConn.getConn().prepareStatement(query);
+			PreparedStatement ps=dbConn.getConnection().prepareStatement(query);
 			ps.setString(1, d.getNome());
 			ps.setString(2, d.getCognome());
 			ps.setString(3, d.getSesso());
@@ -113,7 +113,7 @@ public class DocenteDaoImpl implements DocenteDAO {
 		
 		try {
 			
-			PreparedStatement ps= dbConn.getConn().prepareStatement(query);
+			PreparedStatement ps= dbConn.getConnection().prepareStatement(query);
 			ResultSet rs = ps.executeQuery();
 			
 			while (rs.next()) {

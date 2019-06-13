@@ -38,7 +38,7 @@ public class DbConnection {
 	}
 	
 	//metodo static getInstance
-	public static DbConnection getConnection() {
+	public static DbConnection getDbConnection() {
 		
 		if(instance==null) {
 			instance=new DbConnection();
@@ -47,7 +47,7 @@ public class DbConnection {
 	}
 	
 	//getter di conn
-	public Connection getConn() {
+	public Connection getConnection() {
 		return this.conn;
 	}
 

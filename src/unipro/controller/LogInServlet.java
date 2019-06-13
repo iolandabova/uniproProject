@@ -49,7 +49,7 @@ public class LogInServlet extends HttpServlet {
 		
 		String matricola = request.getParameter("matricola");
 		String password = request.getParameter("pass");
-		Studente s = studenteDao.getByMatricolaPassword(matricola, password);
+		Studente s = studenteDao.getStudentByMatricolaPassword(matricola, password);
 		
 		if(s != null) {
 			

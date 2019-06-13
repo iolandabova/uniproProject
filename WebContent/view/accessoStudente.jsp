@@ -34,9 +34,9 @@
 		    String nome = (String) session.getAttribute("nomeStudente");
 		    String cognome = (String) session.getAttribute("cognomeStudente"); %>
 		   
-		<log> <b>Benvenuto/a nel sito  <%= nome+" "+cognome+" "+ matricola %>!</b> </log>
+		<log> <b>Benvenuto/a <%= nome+" "+cognome+" "+ matricola %></b> </log>
 		
-		<ul><br><br><br><br><br><br><br><br><br>
+		<ul> <br><br><br><br><br><br><br><br><br>
 			<li><a href="http://localhost:8080/UniPro/RestituisciAnagraficaStudenteServlet" style="font-size:20px"> Anagrafica Studente</a></li>
 			<li><a href="http://localhost:8080/UniPro/RestituisciPianoDiStudiServlet" style="font-size:20px"> Piano di Studi</a></li>
 			<li><a href="http://localhost:8080/UniPro/RestituisciEsamiServlet" style="font-size:20px"> Prenota esame</a></li>

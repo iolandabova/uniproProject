@@ -8,8 +8,23 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<title>Lista Esami</title>
+		<style>
+			log {
+					text-align: center;
+	    			position: fixed;
+	   				width : 100%;
+	   				font-family : "Cambria";
+	   				font-size: 30px;
+	   				top: 180px;
+				}
+				
+		</style>	
+		<link rel = "stylesheet" href = "http://localhost:8080/UniPro/css/progetto.css" type = "text/css">
 	</head>
 	<body>
+		<img src = "http://localhost:8080/UniPro/images/corona.png" width = "90px" height = "80px" hspace = "5px"/>
+		<logo> UniPro </logo> <br>
+		
 		<form method="post" action="http://localhost:8080/UniPro/view/logInStudente.jsp">
 		 	<div style="text-align:right;">
 				<input type="submit" name="esci" value="Logout"/>
@@ -27,6 +42,10 @@
 		
 			ArrayList<Esame> listaEsami = (ArrayList<Esame>) request.getAttribute("listaEsamiPerNome");
 		%>
+		
+		<log> <b>Prenota esame </b> </log>
+		
+		<br><br><br><br><br><br><br>
 	
 		<form method="post" action="http://localhost:8080/UniPro/RestituisciAppelliServlet">
 			
@@ -45,10 +64,8 @@
 			<% 
 			}
 			%>
-			</table>
-			
-			
-			<input type="submit" name="invia" value="Ok"/>
+			</table> <br>
+			<input type="submit" name="invia" value="Prenota"/>
 		</form>
 	</body>
 </html>

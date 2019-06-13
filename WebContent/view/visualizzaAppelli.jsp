@@ -10,11 +10,32 @@
 	<head>
 		<meta charset="ISO-8859-1">
 		<title>Appelli disponibili</title>
+		<style>
+			log {
+					text-align: center;
+	    			position: fixed;
+	   				width : 100%;
+	   				font-family : "Cambria";
+	   				font-size: 30px;
+	   				top: 180px;
+				}
+				
+		  alert {
+					text-align: center;
+	    			position: fixed;
+	   				width : 100%;
+	   				font-family : "Cambria";
+	   				font-size: 20px;
+	   				color: #A00000;
+	   				top: 500px;
+				}
+		</style>	
 		<link rel = "stylesheet" href = "http://localhost:8080/UniPro/css/progetto.css" type = "text/css">
 	</head>
 	<body>
 		<img src = "http://localhost:8080/UniPro/images/corona.png" width = "90px" height = "80px" hspace = "5px"/>
 		<logo> UniPro </logo> <br>
+		
 		<form method="post" action="http://localhost:8080/UniPro/view/logInStudente.jsp">
 		 	<div style="text-align:right;">
 				<input type="submit" name="esci" value="Logout"/>
@@ -35,6 +56,10 @@
 			SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 		%>
 		
+		<log> <b>Prenota esame </b> </log>
+		
+		<br><br><br><br><br><br><br>
+		
 		<form method="post" action="http://localhost:8080/UniPro/PrenotaAppelloServlet">
 			<table border="2">
 			<%
@@ -46,21 +71,21 @@
 						<input type="radio" name="appelloScelto" value=<%=ap.getIdAppello() %>  >
 					</td>
 					<td>
-						<%=ap.getNomeEsame()+" "+date+" "+ap.getAula()+" "+ap.getCognomeDocente()+" "+ap.getNomeDocente()%>
+						<%=ap.getNomeEsame()+" "+date+" aula "+ap.getAula()+" "+ap.getCognomeDocente()+" "+ap.getNomeDocente()%>
 					</td>			
 				</tr>
 			<% 
 			}
 			%>
-			</table>
+			</table> <br>
 			<input type="submit" name="invia" value="Prenota"/>
 			<% if(esitoPrenotazione != null && esitoPrenotazione.booleanValue() == true) { %>
 				
-					<div>PRENOTAZIONE EFFETTUATA</div>
+					<alert><b>PRENOTAZIONE EFFETTUATA </b></alert>
 					
 			<% } else if(esitoPrenotazione != null){ %>
 					
-					<div>PRENOTAZIONE non EFFETTUATA - Hai già prenotato quest'appello</div>
+					<alert><b>PRENOTAZIONE non EFFETTUATA - Hai già prenotato quest'appello</b></alert>
 					
 			<% } %>
 		</form>

@@ -39,7 +39,7 @@
 		 <br><br>
 		 <log> <b>Dati Anagrafici </b> </log>
 	
-		<br><br>
+		<br><br><br><br><br>
 	<% 
 		Utils.checkedLogged(request, response);
 	

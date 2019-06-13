@@ -19,7 +19,7 @@ public class AppelloDaoImpl implements AppelloDAO {
 	
 	public AppelloDaoImpl() {
 		
-		dbConn=DbConnection.getConnection();
+		dbConn=DbConnection.getDbConnection();
 	}
 
 	@Override
@@ -29,7 +29,7 @@ public class AppelloDaoImpl implements AppelloDAO {
 		
 		try {
 			
-			PreparedStatement ps= dbConn.getConn().prepareStatement(query);
+			PreparedStatement ps= dbConn.getConnection().prepareStatement(query);
 			ps.setString(1, ap.getIdAppello());
 			Date d = ap.getData();
 			java.sql.Date sd = new java.sql.Date(d.getTime());
@@ -55,7 +55,7 @@ public class AppelloDaoImpl implements AppelloDAO {
 		
 		try {
 			
-			PreparedStatement ps = dbConn.getConn().prepareStatement(query);
+			PreparedStatement ps = dbConn.getConnection().prepareStatement(query);
 			ps.setString(1, idAppello);
 			
 			ps.executeUpdate();
@@ -75,7 +75,7 @@ public class AppelloDaoImpl implements AppelloDAO {
 		String query="select * from appello where idAppello=?";
 		try {
 			
-			PreparedStatement ps=dbConn.getConn().prepareStatement(query);
+			PreparedStatement ps=dbConn.getConnection().prepareStatement(query);
 			ps.setString(1, idAppello);
 			ResultSet rs=ps.executeQuery();
 			if(rs.next()) {
@@ -100,7 +100,7 @@ public class AppelloDaoImpl implements AppelloDAO {
 		String query = "update appello set data = ?, aula = ?, idesame = ?, iddocente = ? where idappello = ?";
 		
 		try {
-			PreparedStatement ps=dbConn.getConn().prepareStatement(query);
+			PreparedStatement ps=dbConn.getConnection().prepareStatement(query);
 			Date d = ap.getData();
 			java.sql.Date sd = new java.sql.Date(d.getTime());
 			ps.setDate(1, sd);
@@ -129,7 +129,7 @@ public class AppelloDaoImpl implements AppelloDAO {
 		
 		try {
 			
-			PreparedStatement ps= dbConn.getConn().prepareStatement(query);
+			PreparedStatement ps= dbConn.getConnection().prepareStatement(query);
 			ps.setString(1, idEsame);
 			ResultSet rs = ps.executeQuery();
 			
@@ -161,7 +161,7 @@ public class AppelloDaoImpl implements AppelloDAO {
 		
 		try {
 			
-			PreparedStatement ps= dbConn.getConn().prepareStatement(query);
+			PreparedStatement ps= dbConn.getConnection().prepareStatement(query);
 			ResultSet rs = ps.executeQuery();
 			
 			while (rs.next()) {

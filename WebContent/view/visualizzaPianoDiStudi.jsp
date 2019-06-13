@@ -24,7 +24,7 @@
 	   				width : 100%;
 	   				font-family : "Cambria";
 	   				font-size: 20px;
-	   				top: 200px;
+	   				top: 280px;
 				}
 		</style>
 		<link rel = "stylesheet" href = "http://localhost:8080/UniPro/css/progetto.css" type = "text/css">

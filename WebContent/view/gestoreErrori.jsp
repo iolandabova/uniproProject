@@ -6,16 +6,32 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<title>Error</title>
+		<style>
+				
+		  alert {
+					text-align: center;
+	    			position: fixed;
+	   				width : 100%;
+	   				font-family : "Cambria";
+	   				font-size: 30px;
+	   				color: #A00000;
+	   				top: 300px;
+				}
+		</style>	
+		<link rel = "stylesheet" href = "http://localhost:8080/UniPro/css/progetto.css" type = "text/css">
 	</head>
 	<body>
+		<img src = "http://localhost:8080/UniPro/images/corona.png" width = "90px" height = "80px" hspace = "5px"/>
+		<logo> UniPro </logo> <br>	
+		
 		<% Object errorGrezzo = request.getAttribute("codiceErrore");
 		   int errore = (int) errorGrezzo; 	
 		   
 		   if(errore == ErrorCodes.WRONGLOGIN) { %>
 		   
-		   		<h2 align="center" style="color:red">Matricola o password errati!</h2>
+		   		<alert><b>Matricola o password errati!</b></alert>
 		   		<form method="post" action="http://localhost:8080/UniPro/view/logInStudente.jsp">
-		   			<div style="text-align:center;">
+		   			<div style="text-align:center; margin-top:280px">
 						<input type="submit" name="invia" value="Riprova"/>
 					</div>
 		   		</form>
@@ -25,9 +41,9 @@
 		<% 
 		   if(errore == ErrorCodes.LOGINNOTMADE) { %>
 		   
-		   		<h2 align="center" style="color:red">Devi effettuare l'accesso!</h2>
+		   		<alert><b>Devi effettuare l'accesso!</b></alert>
 		   		<form method="post" action="http://localhost:8080/UniPro/index.html">
-		   			<div style="text-align:center;">
+		   			<div style="text-align:center; margin-top:280px">
 						<input type="submit" name="invia" value="Effettua il Login"/>
 					</div>
 		   		</form>
@@ -37,9 +53,9 @@
 		<% 
 		   if(errore == ErrorCodes.WRONGLOGINAMM) { %>
 		   
-		   		<h2 align="center" style="color:red">Username o password errati!</h2>
+		   		<alert><b>Username o password errati!</b></alert>
 		   		<form method="post" action="http://localhost:8080/UniPro/view/logInAmministratore.jsp">
-		   			<div style="text-align:center;">
+		   			<div style="text-align:center; margin-top:280px">
 						<input type="submit" name="invia" value="Riprova"/>
 					</div>
 		   		</form>
@@ -49,9 +65,9 @@
 		<% 
 		   if(errore == ErrorCodes.ALREADYENTERED) { %>
 		   
-		   		<h2 align="center" style="color:red">Studente già presente nel sistema!</h2>
+		   		<alert><b>Studente già presente nel sistema!</b></alert>
 		   		<form method="post" action="http://localhost:8080/UniPro/view/accessoAmministratore.jsp">
-		   			<div style="text-align:center;">
+		   			<div style="text-align:center; margin-top:280px">
 						<input type="submit" name="invia" value="Indietro"/>
 					</div>
 		   		</form>
